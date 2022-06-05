@@ -1,0 +1,50 @@
+@import '/styles/mixins';
+@import '/styles/util';
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+	font-size: 2rem;
+
+	&__btn {
+		border: 0.1rem solid black;
+		width: 100%;
+		font-size: inherit;
+		padding: 1rem;
+		color: inherit;
+		cursor: pointer;
+
+		&:hover,
+		&:active {
+			background-color: grey;
+		}
+	}
+
+	&__container {
+		display: none;
+		position: absolute;
+		height: 30vh;
+		width: 100%;
+		overflow: auto;
+		border: 0.1rem solid black;
+	}
+
+	&__content {
+		display: grid;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		&:hover,
+		&:active {
+			background-color: grey;
+		}
+	}
+}
+
+.visible {
+	display: grid !important;
+}

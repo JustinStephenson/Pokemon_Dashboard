@@ -1,0 +1,31 @@
+// Variables
+:root {
+	--color-primary: black;
+}
+
+// Base css
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: 62.5%; // 1 rem = 10 px
+}
+
+body {
+	font-family: sans-serif;
+	color: var(--color-primary);
+	font-weight: 300;
+	line-height: 1.6;
+}
+
+// App
+.dashboard {
+	display: grid;
+	grid-template-rows: 20vh;
+}
