@@ -42,6 +42,7 @@ export const fetchAllPokemon = () => {
 		await dispatch(fetchPokemonCount());
 
 		const response = await pokeApi().get('/pokemon', {
+			// after pokemonCount the api gives different types/versions of same pokemon
 			params: {
 				limit: getState().pokemonCount,
 			},
