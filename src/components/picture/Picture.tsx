@@ -21,7 +21,6 @@ export const Picture = (props: PictureProps) => {
 				setPokePic(URL.createObjectURL(new Blob([response.data])));
 			};
 			apiRequest();
-			console.log(pokePic);
 		}
 	}, [pokemonDetails]);
 
