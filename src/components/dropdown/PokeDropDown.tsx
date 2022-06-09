@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../util/hooks';
-import { pokemonActions, Pokemon } from '../../store/actions';
+import { Pokemon, pokemonActions } from '../../store/actions';
 import { bindActionCreators } from 'redux';
 import { DropDown, DropDownProps } from './DropDown';
 
 export const PokeDropDown = () => {
+	// Config
 	const dispatch = useAppDispatch();
 	const { fetchAllPokemon } = bindActionCreators(pokemonActions, dispatch);
 	const pokemon: Pokemon[] = useAppSelector((state) => {
 		return state.pokemonAll;
 	});
 
+	// Component State
+	let [dropDownProps, setDropDownProps] = useState<DropDownProps>({
+		text: [],
+	});
+
 	useEffect(() => {
-		//fetchAllPokemon();
+		fetchAllPokemon();
 	}, []);
 
-	const dropDownProps: DropDownProps = {
-		text: [
-			'test',
-			'test2',
-			'test3',
-			'test',
-			'test2',
-			'test3',
-			'test',
-			'test2',
-			'test3',
-			'test',
-			'test2',
-			'test3',
-		],
+	useEffect(() => {
+		if (pokemon) {
+			setDropDownProps({ text: fillTextWithPokemon(pokemon) });
+		}
+	}, [pokemon]);
+
+	const fillTextWithPokemon = (pokeList: Pokemon[]): string[] => {
+		return pokeList.map((poke) => {
+			return poke.name;
+		});
 	};
 
 	return (

@@ -10,12 +10,12 @@ export type DropDownProps = {
 export const DropDown = (props: DropDownProps): JSX.Element => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [dropDownText, setDropDownText] = useState('Select');
-	const elementref = useRef<HTMLDivElement>(null);
+	const elementRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const onBodyClick = (event: MouseEvent) => {
 			if (event.target instanceof Element) {
-				if (elementref.current && elementref.current.contains(event.target)) {
+				if (elementRef.current && elementRef.current.contains(event.target)) {
 					return;
 				}
 				setIsOpen(false);
@@ -61,7 +61,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	};
 
 	return (
-		<div ref={elementref} className="dropdown u-margin-sides">
+		<div ref={elementRef} className="dropdown u-margin-sides">
 			<button onClick={setIsOpenClick} className="dropdown__btn">
 				{dropDownText}
 			</button>
