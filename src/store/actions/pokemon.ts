@@ -19,6 +19,11 @@ export interface FetchAllPokemonAction {
 	payload: Pokemon[];
 }
 
+export interface FetchPokemonDetails {
+	type: ActionTypes.FETCH_POKEMON_DETAILS;
+	payload: any;
+}
+
 export const fetchPokemonCount = () => {
 	return async (dispatch: Dispatch<Action>) => {
 		const response = await pokeApi().get('/pokemon-species', {
@@ -51,6 +56,17 @@ export const fetchAllPokemon = () => {
 		return dispatch<FetchAllPokemonAction>({
 			type: ActionTypes.FETCH_ALL_POKEMON,
 			payload: response.data.results,
+		});
+	};
+};
+
+export const fetchPokemonDetails = (id: number) => {
+	return async (dispatch: Dispatch<Action>) => {
+		const response = await pokeApi().get(`/pokemon/${id}`);
+
+		dispatch<FetchPokemonDetails>({
+			type: ActionTypes.FETCH_POKEMON_DETAILS,
+			payload: response.data,
 		});
 	};
 };

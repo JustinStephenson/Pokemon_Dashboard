@@ -5,11 +5,12 @@ import './DropDown.scss';
 export type DropDownProps = {
 	text: string[];
 	icon?: string[];
+	callback?: (...args: any[]) => void;
 };
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [dropDownText, setDropDownText] = useState('Select');
+	const [selected, setSelected] = useState<string>('Select');
 	const elementRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -37,8 +38,8 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 		setIsOpen(!isOpen);
 	};
 
-	const setDropDownTextClick = (text: string) => {
-		setDropDownText(text);
+	const dropDownClick = (text: string) => {
+		setSelected(text);
 	};
 
 	const renderContent = (): JSX.Element[] => {
@@ -48,7 +49,10 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 				<div
 					key={i}
 					onClick={() => {
-						setDropDownTextClick(props.text[i]);
+						dropDownClick(props.text[i]);
+						if (props.callback) {
+							props.callback(i);
+						}
 					}}
 					className="dropdown__item"
 				>
@@ -62,7 +66,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	return (
 		<div ref={elementRef} className="dropdown u-margin-sides">
 			<button onClick={setIsOpenClick} className="dropdown__btn">
-				{dropDownText}
+				{selected}
 			</button>
 			<div className={`dropdown__container ${isOpen ? 'visible' : ''}`}>
 				<div onClick={setIsOpenClick} className={`dropdown__content`}>
