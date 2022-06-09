@@ -49,7 +49,6 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 					key={i}
 					onClick={() => {
 						setDropDownTextClick(props.text[i]);
-						setIsOpenClick();
 					}}
 					className="dropdown__item"
 				>
@@ -66,7 +65,9 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 				{dropDownText}
 			</button>
 			<div className={`dropdown__container ${isOpen ? 'visible' : ''}`}>
-				<div className={`dropdown__content`}>{renderContent()}</div>
+				<div onClick={setIsOpenClick} className={`dropdown__content`}>
+					{renderContent()}
+				</div>
 			</div>
 		</div>
 	);

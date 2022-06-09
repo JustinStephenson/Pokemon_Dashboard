@@ -5,12 +5,14 @@
 	position: relative;
 	display: inline-block;
 	font-size: 2rem;
+	background-color: var(--color-white);
 
 	&__btn {
 		border: 0.1rem solid black;
 		width: 100%;
 		font-size: inherit;
 		padding: 1rem;
+		background-color: inherit;
 		color: inherit;
 		cursor: pointer;
 
@@ -27,16 +29,19 @@
 		width: 100%;
 		overflow: auto;
 		border: 0.1rem solid black;
+		background-color: inherit;
 	}
 
 	&__content {
 		display: grid;
+		background-color: inherit;
 	}
 
 	&__item {
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
+		background-color: inherit;
 
 		&:hover,
 		&:active {
