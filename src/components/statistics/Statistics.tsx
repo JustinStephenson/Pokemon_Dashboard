@@ -41,7 +41,7 @@ export const Statistics = (props: StatisticsProps) => {
 
 	return (
 		<div className="stats">
-			<div className="stats__header">Stats</div>
+			<div className="stats__header">Base-Stats</div>
 			<div className="stats__name">
 				<p>Hp</p>
 				<p>Attack</p>
