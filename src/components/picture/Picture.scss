@@ -1,4 +1,14 @@
 .picture {
-	font-size: 3rem;
-	justify-self: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 100%;
+	width: 100%;
+
+	img {
+		display: inline-block;
+		width: auto;
+		height: 100%;
+	}
 }
