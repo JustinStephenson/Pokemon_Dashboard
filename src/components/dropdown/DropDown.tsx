@@ -64,7 +64,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	};
 
 	return (
-		<div ref={elementRef} className="dropdown u-margin-sides">
+		<div ref={elementRef} className="dropdown u-margin-sides-big">
 			<button onClick={setIsOpenClick} className="dropdown__btn">
 				{selected}
 			</button>

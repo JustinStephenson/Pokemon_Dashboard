@@ -2,8 +2,7 @@
 	grid-column: 2 / -1;
 	display: grid;
 	grid-template-columns: min-content 1fr;
-	grid-template-rows: min-content 1fr;
-	font-size: 1.5rem;
+	grid-template-rows: 1fr 4fr;
 
 	width: 100%;
 	height: 100%;
@@ -13,6 +12,7 @@
 		align-self: center;
 		font-weight: bold;
 		text-decoration: underline;
+		color: var(--color-primary);
 	}
 
 	&__name {
@@ -23,6 +23,7 @@
 		justify-items: flex-end;
 		align-items: center;
 		margin-right: 1rem;
+		color: var(--color-primary);
 
 		p {
 			display: inline-block;
@@ -38,11 +39,58 @@
 		row-gap: 0.5rem;
 
 		width: 100%;
-		height: 100%;
+		color: inherit;
 
 		& > * {
-			background-color: orangered;
+			color: inherit;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
 			// grid-column is updated in react component
+		}
+
+		// HP
+		&-0 {
+			background-color: var(--base-stat-color-red);
+			color: var(--base-stat-color-red);
+		}
+
+		// Attack
+		&-1 {
+			background-color: var(--base-stat-color-orange);
+			color: var(--base-stat-color-orange);
+		}
+
+		// Defense
+		&-2 {
+			background-color: var(--base-stat-color-yellow);
+			color: var(--base-stat-color-yellow);
+		}
+
+		// Sp. Attack
+		&-3 {
+			background-color: var(--base-stat-color-blue);
+			color: var(--base-stat-color-blue);
+		}
+
+		// Sp. Defense
+		&-4 {
+			background-color: var(--base-stat-color-green);
+			color: var(--base-stat-color-green);
+		}
+
+		// Speed
+		&-5 {
+			background-color: var(--base-stat-color-pink);
+			color: var(--base-stat-color-pink);
+		}
+
+		&-num {
+			transform: translateX(3.25rem);
+			color: inherit;
+			font-size: 1.6rem;
+			font-weight: 600;
+			height: 100%;
 		}
 	}
 }

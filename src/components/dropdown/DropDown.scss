@@ -30,6 +30,7 @@
 		overflow: auto;
 		border: 0.1rem solid black;
 		background-color: inherit;
+		z-index: 1000;
 	}
 
 	&__content {

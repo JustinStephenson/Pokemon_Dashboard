@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../util/hooks';
 import './Statistics.scss';
 
@@ -33,7 +33,9 @@ export const Statistics = (props: StatisticsProps) => {
 					key={i}
 					style={{ gridColumn: `1 / ${pokeStats[i].base_stat}` }}
 					className={`stats__graph-${i}`}
-				></div>
+				>
+					<div className="stats__graph-num">{pokeStats[i].base_stat}</div>
+				</div>
 			);
 		}
 		return result;
