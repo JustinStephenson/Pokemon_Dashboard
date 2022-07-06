@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../util/hooks';
 import { getImgImportFromName, ImgImport } from 'img/types';
+import { numToDec, mToFeet, kgToLbs } from 'shared/conversions';
 import './Info.scss';
 
 export type InfoProps = {};
@@ -98,12 +99,30 @@ export const Info = (props: InfoProps) => {
 		return result;
 	};
 
+	// height comes in meters, last num is a decimal
+	// convert height to proper meters and inches
 	const populateHeight = (): JSX.Element => {
-		return <React.Fragment>{pokeHeight}</React.Fragment>;
+		const heightKg = numToDec(pokeHeight, 1);
+		const heightFeet = mToFeet(+heightKg, 1);
+		return (
+			<React.Fragment>
+				<div className="info__body-bot-hw">{heightKg} m</div>
+				<div className="info__body-bot-hw">{heightFeet}</div>
+			</React.Fragment>
+		);
 	};
 
+	// weight comes in kg, last num is a decimal
+	// convert weight to proper kg and lbs
 	const populateWeight = (): JSX.Element => {
-		return <React.Fragment>{pokeWeight}</React.Fragment>;
+		const weightKg = numToDec(pokeWeight, 1);
+		const weightLbs = kgToLbs(+weightKg, 1);
+		return (
+			<React.Fragment>
+				<div className="info__body-bot-hw">{weightKg} kg</div>
+				<div className="info__body-bot-hw">{weightLbs} lbs</div>
+			</React.Fragment>
+		);
 	};
 
 	return (

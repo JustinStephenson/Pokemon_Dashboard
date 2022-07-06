@@ -84,6 +84,11 @@
 					align-self: center;
 				}
 			}
+
+			// hw for height and weight
+			&-hw {
+				text-transform: lowercase;
+			}
 		}
 	}
 }
