@@ -1,5 +1,5 @@
 # Pokemon_Dashboard
-A Pokemon Dashboard built using React and Typescript
+A Pokemon Dashboard built using React and Typescript.
 
 Using:<br>
 Axios<br>
