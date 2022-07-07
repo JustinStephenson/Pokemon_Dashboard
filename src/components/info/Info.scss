@@ -53,6 +53,23 @@
 			border-right: var(--border-size-info) solid var(--color-primary);
 		}
 
+		&-identity {
+			display: grid;
+			grid-column: 1 / -1;
+			grid-template-columns: 1fr 1fr 1fr;
+			border-bottom: none;
+
+			& > * {
+				display: grid;
+				grid-row: 1 / -1;
+				border-right: var(--border-size-info) solid var(--color-primary);
+			}
+
+			&-last {
+				border-right: none;
+			}
+		}
+
 		&-top {
 			align-self: center;
 			justify-self: center;

@@ -21,6 +21,13 @@ export interface FetchAllPokemonAction {
 
 export interface FetchPokemonDetails {
 	type: ActionTypes.FETCH_POKEMON_DETAILS;
+	// TODO: get rid of any, add full api return
+	payload: any;
+}
+
+export interface FetchPokemonSpecies {
+	type: ActionTypes.FETCH_POKEMON_SPECIES;
+	// TODO: get rid of any, add full api return
 	payload: any;
 }
 
@@ -66,6 +73,17 @@ export const fetchPokemonDetails = (id: number) => {
 
 		dispatch<FetchPokemonDetails>({
 			type: ActionTypes.FETCH_POKEMON_DETAILS,
+			payload: response.data,
+		});
+	};
+};
+
+export const fetchPokemonSpecies = (id: number) => {
+	return async (dispatch: Dispatch<Action>) => {
+		const response = await pokeApi().get(`/pokemon-species/${id}`);
+
+		dispatch<FetchPokemonSpecies>({
+			type: ActionTypes.FETCH_POKEMON_SPECIES,
 			payload: response.data,
 		});
 	};

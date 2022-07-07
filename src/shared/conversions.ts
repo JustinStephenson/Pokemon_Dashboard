@@ -11,7 +11,10 @@ export const numToDec = (num: number, decNum: number): string => {
 export const mToFeet = (num: number, decNum: number): string => {
 	const result = +(num * METER_TO_INCHES_CONVERSION).toFixed(decNum);
 	const feet = Math.floor(result / 12);
-	const inches = Math.round(result % 12);
+	let inches: number | string = Math.round(result % 12);
+	if (inches < 10) {
+		inches = '0' + inches;
+	}
 	return '' + feet + "'" + inches + "''";
 };
 

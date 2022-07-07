@@ -21,16 +21,24 @@ export const Info = (props: InfoProps) => {
 	const pokemonDetails: any = useAppSelector((state) => {
 		return state.pokemonDetails;
 	});
+	const pokemonSpecies: any = useAppSelector((state) => {
+		return state.pokemonSpecies;
+	});
+
 	const [pokeName, setPokeName] = useState<string>('');
 	const [pokeDex, setPokeDex] = useState<number>(0);
 	const [pokeTypes, setPokeTypes] = useState<PokemonTypes[]>([]);
 	const [pokeAbilities, setPokeAbilities] = useState<PokemonAbilities[]>([]);
 	const [pokeHeight, setPokeHeight] = useState<number>(0);
 	const [pokeWeight, setPokeWeight] = useState<number>(0);
+	const [pokeIsBaby, setPokeIsBaby] = useState<boolean>(false);
+	const [pokeIsLegendary, setPokeIsLegendary] = useState<boolean>(false);
+	const [pokeIsMythical, setPokeIsMythical] = useState<boolean>(false);
 
+	// set all state that uses pokemonDetails
 	useEffect(() => {
 		if (pokemonDetails) {
-			// set all state
+			console.log('details');
 			setPokeName(pokemonDetails.name);
 			setPokeDex(pokemonDetails.id);
 			setPokeTypes(pokemonDetails.types);
@@ -39,6 +47,16 @@ export const Info = (props: InfoProps) => {
 			setPokeWeight(pokemonDetails.weight);
 		}
 	}, [pokemonDetails]);
+
+	// set all state that uses pokemonSpecies
+	useEffect(() => {
+		if (pokemonSpecies) {
+			console.log('species');
+			setPokeIsBaby(pokemonSpecies.is_baby);
+			setPokeIsLegendary(pokemonSpecies.is_legendary);
+			setPokeIsMythical(pokemonSpecies.is_mythical);
+		}
+	}, [pokemonSpecies]);
 
 	const populateName = (): JSX.Element => {
 		return <React.Fragment>{pokeName}</React.Fragment>;
@@ -58,9 +76,8 @@ export const Info = (props: InfoProps) => {
 			const result: JSX.Element[] = [];
 			for (let i = 0; i < imgImports.length; i++) {
 				result.push(
-					<React.Fragment>
+					<React.Fragment key={i}>
 						<img
-							key={i}
 							src={imgImports[i]}
 							alt="Type Image"
 							className="info__body-bot-types"
@@ -79,7 +96,7 @@ export const Info = (props: InfoProps) => {
 		for (let i = 0; i < pokeAbilities.length; i++) {
 			if (pokeAbilities[i].is_hidden) {
 				result.push(
-					<React.Fragment>
+					<React.Fragment key={i}>
 						<div className="info__body-bot-abilities">
 							<p>{pokeAbilities[i].ability.name}</p>
 							<p className="info__body-bot-abilities-hidden">Hidden Ability</p>
@@ -88,7 +105,7 @@ export const Info = (props: InfoProps) => {
 				);
 			} else {
 				result.push(
-					<React.Fragment>
+					<React.Fragment key={i}>
 						<p className="info__body-bot-abilities">
 							{pokeAbilities[i].ability.name}
 						</p>
@@ -154,6 +171,20 @@ export const Info = (props: InfoProps) => {
 				<div className="info__body-weight">
 					<div className="info__body-top">Weight</div>
 					<div className="info__body-bot">{populateWeight()}</div>
+				</div>
+				<div className="info__body-identity">
+					<div>
+						<div className="info__body-top">Hello</div>
+						<div className="info__body-bot">Name</div>
+					</div>
+					<div>
+						<div className="info__body-top">Hello2</div>
+						<div className="info__body-bot">Name2</div>
+					</div>
+					<div className="info__body-identity-last">
+						<div className="info__body-top">Hello3</div>
+						<div className="info__body-bot">Name3</div>
+					</div>
 				</div>
 			</div>
 		</div>
