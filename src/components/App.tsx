@@ -13,7 +13,7 @@ export const App = (): JSX.Element => {
 				<Statistics />
 			</div>
 			<div className="dashboard__section-2 u-margin-sides-medium">
-				<Info />.
+				<Info />
 			</div>
 		</div>
 	);
