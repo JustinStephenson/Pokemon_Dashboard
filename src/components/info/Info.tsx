@@ -123,8 +123,8 @@ export const Info = (props: InfoProps) => {
 		const heightFeet = mToFeet(+heightKg, 1);
 		return (
 			<React.Fragment>
-				<div className="info__body-bot-hw">{heightKg} m</div>
-				<div className="info__body-bot-hw">{heightFeet}</div>
+				<p className="info__body-bot-hw">{heightKg} m</p>
+				<p className="info__body-bot-hw">{heightFeet}</p>
 			</React.Fragment>
 		);
 	};
@@ -136,8 +136,8 @@ export const Info = (props: InfoProps) => {
 		const weightLbs = kgToLbs(+weightKg, 1);
 		return (
 			<React.Fragment>
-				<div className="info__body-bot-hw">{weightKg} kg</div>
-				<div className="info__body-bot-hw">{weightLbs} lbs</div>
+				<p className="info__body-bot-hw">{weightKg} kg</p>
+				<p className="info__body-bot-hw">{weightLbs} lbs</p>
 			</React.Fragment>
 		);
 	};
@@ -145,44 +145,44 @@ export const Info = (props: InfoProps) => {
 	return (
 		<div className="info">
 			<div className="info__header">
-				<div className="info__header-text">Pokemon Information</div>
+				<p className="info__header-text">Pokemon Information</p>
 			</div>
 			<div className="info__body">
 				<div className="info__body-name">
-					<div className="info__body-top">Name</div>
+					<p className="info__body-top">Name</p>
 					<div className="info__body-bot">{populateName()}</div>
 				</div>
 				<div className="info__body-dex">
-					<div className="info__body-top">Pokedex Entry</div>
+					<p className="info__body-top">Pokedex Entry</p>
 					<div className="info__body-bot">{populateDex()}</div>
 				</div>
 				<div className="info__body-type">
-					<div className="info__body-top">Type</div>
+					<p className="info__body-top">Type</p>
 					<div className="info__body-bot">{populateType()}</div>
 				</div>
 				<div className="info__body-abilities">
-					<div className="info__body-top">Abilities</div>
+					<p className="info__body-top">Abilities</p>
 					<div className="info__body-bot">{populateAbilities()}</div>
 				</div>
 				<div className="info__body-height">
-					<div className="info__body-top">Height</div>
+					<p className="info__body-top">Height</p>
 					<div className="info__body-bot">{populateHeight()}</div>
 				</div>
 				<div className="info__body-weight">
-					<div className="info__body-top">Weight</div>
+					<p className="info__body-top">Weight</p>
 					<div className="info__body-bot">{populateWeight()}</div>
 				</div>
 				<div className="info__body-identity">
 					<div>
-						<div className="info__body-top">Hello</div>
+						<p className="info__body-top">Baby</p>
 						<div className="info__body-bot">Name</div>
 					</div>
 					<div>
-						<div className="info__body-top">Hello2</div>
+						<p className="info__body-top">Legendary</p>
 						<div className="info__body-bot">Name2</div>
 					</div>
 					<div className="info__body-identity-last">
-						<div className="info__body-top">Hello3</div>
+						<p className="info__body-top">Mythical</p>
 						<div className="info__body-bot">Name3</div>
 					</div>
 				</div>
