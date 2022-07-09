@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../util/hooks';
 import { getImgImportFromName, ImgImport } from 'img/types';
 import { numToDec, mToFeet, kgToLbs } from 'shared/conversions';
+import { CheckBox } from 'components/checkbox/CheckBox';
 import './Info.scss';
 
 export type InfoProps = {};
@@ -25,6 +26,7 @@ export const Info = (props: InfoProps) => {
 		return state.pokemonSpecies;
 	});
 
+	// Component State
 	const [pokeName, setPokeName] = useState<string>('');
 	const [pokeDex, setPokeDex] = useState<number>(0);
 	const [pokeTypes, setPokeTypes] = useState<PokemonTypes[]>([]);
@@ -175,15 +177,21 @@ export const Info = (props: InfoProps) => {
 				<div className="info__body-identity">
 					<div>
 						<p className="info__body-top">Baby</p>
-						<div className="info__body-bot">Name</div>
+						<div className="info__body-bot info__body-bot-checkbox">
+							<CheckBox isChecked={pokeIsBaby} />
+						</div>
 					</div>
 					<div>
 						<p className="info__body-top">Legendary</p>
-						<div className="info__body-bot">Name2</div>
+						<div className="info__body-bot info__body-bot-checkbox">
+							<CheckBox isChecked={pokeIsLegendary} />
+						</div>
 					</div>
 					<div className="info__body-identity-last">
 						<p className="info__body-top">Mythical</p>
-						<div className="info__body-bot">Name3</div>
+						<div className="info__body-bot info__body-bot-checkbox">
+							<CheckBox isChecked={pokeIsMythical} />
+						</div>
 					</div>
 				</div>
 			</div>

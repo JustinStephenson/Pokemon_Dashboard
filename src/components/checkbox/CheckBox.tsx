@@ -1,9 +1,12 @@
 import React from 'react';
+import './CheckBox.scss';
 
 type CheckBoxProps = {
 	isChecked: boolean;
 };
 
-const CheckBox = (props: CheckBoxProps) => {
-	return <div>CheckBox</div>;
+//TODO: change look of true and false
+
+export const CheckBox = (props: CheckBoxProps) => {
+	return <input className="checkbox" type="checkbox" />;
 };

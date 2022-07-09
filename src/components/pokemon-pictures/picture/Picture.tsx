@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-import { pokeApi } from '../../api/pokeApi';
-import { useAppSelector } from '../../util/hooks';
+import { pokeApi } from '../../../api/pokeApi';
+import { useAppSelector } from '../../../util/hooks';
 import './Picture.scss';
 
-export type PictureProps = {};
-
-export const Picture = (props: PictureProps) => {
+export const Picture = () => {
 	const pokemonDetails: any = useAppSelector((state) => {
 		return state.pokemonDetails;
 	});
-	const [pokePic, setPokePic] = useState<any>('');
+	const [pokePic, setPokePic] = useState<string>('');
 
+	// TODO: replace with shared function
 	useEffect(() => {
 		if (pokemonDetails) {
 			const loc: string = pokemonDetails.sprites['front_default'];

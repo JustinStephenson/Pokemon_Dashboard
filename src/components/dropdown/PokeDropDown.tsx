@@ -7,18 +7,17 @@ import { DropDown, DropDownProps } from './DropDown';
 export const PokeDropDown = () => {
 	// set-up dispatch
 	const dispatch = useAppDispatch();
-	const { fetchAllPokemon, fetchPokemonDetails } = bindActionCreators(
-		pokemonActions,
-		dispatch
-	);
+	const { fetchAllPokemon, fetchPokemonDetails, fetchPokemonSpecies } =
+		bindActionCreators(pokemonActions, dispatch);
 
 	// Global state
-	const pokemon: Pokemon[] = useAppSelector((state) => {
+	const allPokemon: Pokemon[] = useAppSelector((state) => {
 		return state.pokemonAll;
 	});
 
 	// Component state
 	let [dropDownProps, setDropDownProps] = useState<DropDownProps>({
+		initial: 'Select Pokemon',
 		text: [],
 		callback: () => {},
 	});
@@ -28,17 +27,19 @@ export const PokeDropDown = () => {
 	}, []);
 
 	useEffect(() => {
-		if (pokemon) {
+		if (allPokemon) {
 			setDropDownProps({
-				text: fillTextWithPokemon(pokemon),
+				text: fillTextWithPokemon(allPokemon),
 				callback: (index: number) => {
 					// index, is the pos in the array of given pokemon
 					// this corresponds to the id + 1 of the pokemon
-					fetchPokemonDetails(index + 1);
+					const pokeIndex = index + 1;
+					fetchPokemonDetails(pokeIndex);
+					fetchPokemonSpecies(pokeIndex);
 				},
 			});
 		}
-	}, [pokemon]);
+	}, [allPokemon]);
 
 	const fillTextWithPokemon = (pokeList: Pokemon[]): string[] => {
 		return pokeList.map((poke) => {

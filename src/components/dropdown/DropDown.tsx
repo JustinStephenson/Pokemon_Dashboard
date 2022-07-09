@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './DropDown.scss';
 
-// TODO: force same array size
 export type DropDownProps = {
+	initial?: string;
 	text: string[];
-	icon?: string[];
 	callback?: (...args: any[]) => void;
 };
 
@@ -12,6 +11,13 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState<string>('Select');
 	const elementRef = useRef<HTMLDivElement>(null);
+
+	// set initial text value
+	useEffect(() => {
+		if (props.initial) {
+			setSelected(props.initial);
+		}
+	});
 
 	useEffect(() => {
 		const onBodyClick = (event: MouseEvent) => {

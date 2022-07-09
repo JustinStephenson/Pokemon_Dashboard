@@ -1,4 +1,3 @@
-import React from 'react';
 import { PokeDropDown } from '../dropdown/PokeDropDown';
 import './Header.scss';
 
