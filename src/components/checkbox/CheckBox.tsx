@@ -1,4 +1,3 @@
-import React from 'react';
 import './CheckBox.scss';
 
 type CheckBoxProps = {
@@ -8,5 +7,7 @@ type CheckBoxProps = {
 //TODO: change look of true and false
 
 export const CheckBox = (props: CheckBoxProps) => {
-	return <input className="checkbox" type="checkbox" />;
+	return (
+		<input className="checkbox" type="checkbox" checked={props.isChecked} />
+	);
 };
