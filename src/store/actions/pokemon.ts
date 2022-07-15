@@ -3,6 +3,7 @@ import { Action, ActionTypes } from './types';
 import { Dispatch } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { ReducerType } from '../reducers';
+import { AxiosResponse } from 'axios';
 
 export interface Pokemon {
 	name: string;
@@ -21,6 +22,18 @@ export interface FetchAllPokemonAction {
 
 export interface FetchPokemonDetails {
 	type: ActionTypes.FETCH_POKEMON_DETAILS;
+	// TODO: get rid of any, add full api return
+	payload: any;
+}
+
+export interface FetchPrevPokemonDetails {
+	type: ActionTypes.FETCH_PREV_POKEMON_DETAILS;
+	// TODO: get rid of any, add full api return
+	payload: any;
+}
+
+export interface FetchNextPokemonDetails {
+	type: ActionTypes.FETCH_NEXT_POKEMON_DETAILS;
 	// TODO: get rid of any, add full api return
 	payload: any;
 }
@@ -67,14 +80,51 @@ export const fetchAllPokemon = () => {
 	};
 };
 
+// Fetch selected Pokemon details, and it's neighbors Pokemon details
 export const fetchPokemonDetails = (id: number) => {
-	return async (dispatch: Dispatch<Action>) => {
-		const response = await pokeApi().get(`/pokemon/${id}`);
+	return async (dispatch: Dispatch<Action>, getState: any) => {
+		const currentPokemonResponse = await pokeApi().get(`/pokemon/${id}`);
+		let prevPokemonResponse: AxiosResponse<any, any> | null = null;
+		let nextPokemonResponse: AxiosResponse<any, any> | null = null;
+
+		// check if there is a prev pokemon
+		if (id - 1 !== 0) {
+			prevPokemonResponse = await pokeApi().get(`/pokemon/${id - 1}`);
+		}
+
+		// check if there is a next pokemon
+		if (id + 1 <= getState().pokemonCount) {
+			nextPokemonResponse = await pokeApi().get(`/pokemon/${id + 1}`);
+		}
 
 		dispatch<FetchPokemonDetails>({
 			type: ActionTypes.FETCH_POKEMON_DETAILS,
-			payload: response.data,
+			payload: currentPokemonResponse.data,
 		});
+
+		if (!!prevPokemonResponse) {
+			dispatch<FetchPrevPokemonDetails>({
+				type: ActionTypes.FETCH_PREV_POKEMON_DETAILS,
+				payload: prevPokemonResponse.data,
+			});
+		} else {
+			dispatch<FetchPrevPokemonDetails>({
+				type: ActionTypes.FETCH_PREV_POKEMON_DETAILS,
+				payload: null,
+			});
+		}
+
+		if (!!nextPokemonResponse) {
+			dispatch<FetchNextPokemonDetails>({
+				type: ActionTypes.FETCH_NEXT_POKEMON_DETAILS,
+				payload: nextPokemonResponse.data,
+			});
+		} else {
+			dispatch<FetchNextPokemonDetails>({
+				type: ActionTypes.FETCH_NEXT_POKEMON_DETAILS,
+				payload: null,
+			});
+		}
 	};
 };
 

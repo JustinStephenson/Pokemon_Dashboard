@@ -10,24 +10,11 @@ import { store } from 'store/store';
 const { fetchAllPokemon, fetchPokemonDetails, fetchPokemonSpecies } =
 	bindActionCreators(pokemonActions, store.dispatch);
 
-export const getAllPokemon = () => {
+export const getAllPokemon = (): void => {
 	fetchAllPokemon();
 };
 
 export const getPokemonDetailsById = (id: number): void => {
-	fetchPokemonDetails(id);
+	fetchPokemonDetails(id); // also gets prev and next pokemon details
 	fetchPokemonSpecies(id);
-};
-
-export const getPokemonNeighbors = () => {
-	getPrevPokemonDetails();
-	getNextPokemonDetails();
-};
-
-const getPrevPokemonDetails = () => {
-	//TODO: get details of prev Pokemon
-};
-
-const getNextPokemonDetails = () => {
-	//TODO: get details of next Pokemon
 };

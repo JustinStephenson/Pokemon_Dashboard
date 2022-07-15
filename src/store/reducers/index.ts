@@ -4,6 +4,8 @@ import pokemonAllReducer from './pokemonAllReducer';
 import pokemonCountReducer from './pokemonCountReducer';
 import pokemonDetailsReducer from './pokemonDetailsReducer';
 import pokemonSpeciesReducer from './pokemonSpeciesReducer';
+import prevPokemonReducer from './prevPokemonReducer';
+import nextPokemonReducer from './nextPokemonReducer';
 
 export type ReducerType = {
 	pokemonCount: number;
@@ -11,6 +13,8 @@ export type ReducerType = {
 	// TODO: change any types to a type when it is created in store/actions/pokemon.ts
 	pokemonDetails: any;
 	pokemonSpecies: any;
+	prevPokemon: any;
+	nextPokemon: any;
 };
 
 export default combineReducers<ReducerType>({
@@ -18,4 +22,6 @@ export default combineReducers<ReducerType>({
 	pokemonAll: pokemonAllReducer,
 	pokemonDetails: pokemonDetailsReducer,
 	pokemonSpecies: pokemonSpeciesReducer,
+	prevPokemon: prevPokemonReducer,
+	nextPokemon: nextPokemonReducer,
 });
