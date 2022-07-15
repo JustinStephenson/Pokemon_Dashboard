@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../util/hooks';
-import { Pokemon, pokemonActions } from '../../store/actions';
-import { bindActionCreators } from 'redux';
+import { useAppSelector } from '../../util/hooks';
+import { Pokemon } from '../../store/actions';
 import { DropDown, DropDownProps } from './DropDown';
+import { getAllPokemon, getPokemonDetailsById } from 'util/apiCall';
 
 export const PokeDropDown = () => {
-	// set-up dispatch
-	const dispatch = useAppDispatch();
-	const { fetchAllPokemon, fetchPokemonDetails, fetchPokemonSpecies } =
-		bindActionCreators(pokemonActions, dispatch);
-
 	// Global state
 	const allPokemon: Pokemon[] = useAppSelector((state) => {
 		return state.pokemonAll;
@@ -23,7 +18,7 @@ export const PokeDropDown = () => {
 	});
 
 	useEffect(() => {
-		fetchAllPokemon();
+		getAllPokemon();
 	}, []);
 
 	useEffect(() => {
@@ -34,8 +29,7 @@ export const PokeDropDown = () => {
 					// index, is the pos in the array of given pokemon
 					// this corresponds to the id + 1 of the pokemon
 					const pokeIndex = index + 1;
-					fetchPokemonDetails(pokeIndex);
-					fetchPokemonSpecies(pokeIndex);
+					getPokemonDetailsById(pokeIndex);
 				},
 			});
 		}
