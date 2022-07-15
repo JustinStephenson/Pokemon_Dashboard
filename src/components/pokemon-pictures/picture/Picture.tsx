@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { pokeApi } from '../../../api/pokeApi';
 import { useAppSelector } from '../../../util/hooks';
+import { getPicture } from 'shared/pictureRetrival';
 import './Picture.scss';
 
 export const Picture = () => {
@@ -9,17 +9,12 @@ export const Picture = () => {
 	});
 	const [pokePic, setPokePic] = useState<string>('');
 
-	// TODO: replace with shared function
 	useEffect(() => {
 		if (pokemonDetails) {
 			const loc: string = pokemonDetails.sprites['front_default'];
-			const apiRequest = async () => {
-				const response = await pokeApi().get(loc, {
-					responseType: 'arraybuffer',
-				});
-				setPokePic(URL.createObjectURL(new Blob([response.data])));
-			};
-			apiRequest();
+			getPicture(loc).then((imgUrl) => {
+				setPokePic(imgUrl);
+			});
 		}
 	}, [pokemonDetails]);
 
