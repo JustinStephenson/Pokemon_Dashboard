@@ -1,4 +1,5 @@
 import React from 'react';
+import arrowImg from 'img/arrow/arrow_transparent.png';
 import './Inline.scss';
 
 export type InlineProps = {
@@ -13,11 +14,14 @@ export const Inline = (props: InlineProps) => {
 	};
 
 	const arrow = (): JSX.Element => {
-		return <img key="arrow" alt="arrow" />;
-	};
-
-	const flippedArrow = (): JSX.Element => {
-		return <img key="arrow" alt="arrow" />;
+		return (
+			<img
+				key="arrow"
+				className={props.isNextPokemon ? 'arrow-flipped' : 'arrow'}
+				src={arrowImg}
+				alt="arrow"
+			/>
+		);
 	};
 
 	const populate = (): JSX.Element => {
@@ -26,7 +30,7 @@ export const Inline = (props: InlineProps) => {
 			result.push(image());
 			result.push(arrow());
 		} else {
-			result.push(flippedArrow());
+			result.push(arrow());
 			result.push(image());
 		}
 		return <React.Fragment>{result}</React.Fragment>;

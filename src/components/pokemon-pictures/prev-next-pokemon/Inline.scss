@@ -3,4 +3,18 @@
 	grid-template-columns: 1fr 1fr;
 
 	width: 100%;
+	cursor: pointer;
+}
+
+.arrow {
+	display: block;
+	align-self: center;
+	width: 100%;
+
+	&-flipped {
+		display: block;
+		align-self: center;
+		width: 100%;
+		transform: scaleX(-1);
+	}
 }
