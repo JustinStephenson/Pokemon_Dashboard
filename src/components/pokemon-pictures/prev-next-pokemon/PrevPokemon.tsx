@@ -10,7 +10,7 @@ export const PrevPokemon = () => {
 	const [inlineProps, setInlineProps] = useState<InlineProps>({
 		imgLocation: '',
 		altString: 'pokeImg',
-		isNextPokemon: true,
+		isNextPokemon: false,
 	});
 
 	useEffect(() => {
