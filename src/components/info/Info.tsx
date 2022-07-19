@@ -40,7 +40,6 @@ export const Info = (props: InfoProps) => {
 	// set all state that uses pokemonDetails
 	useEffect(() => {
 		if (pokemonDetails) {
-			console.log('details');
 			setPokeName(pokemonDetails.name);
 			setPokeDex(pokemonDetails.id);
 			setPokeTypes(pokemonDetails.types);
@@ -53,7 +52,6 @@ export const Info = (props: InfoProps) => {
 	// set all state that uses pokemonSpecies
 	useEffect(() => {
 		if (pokemonSpecies) {
-			console.log('species');
 			setPokeIsBaby(pokemonSpecies.is_baby);
 			setPokeIsLegendary(pokemonSpecies.is_legendary);
 			setPokeIsMythical(pokemonSpecies.is_mythical);

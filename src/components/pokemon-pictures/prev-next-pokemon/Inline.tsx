@@ -2,18 +2,22 @@ import React from 'react';
 import './Inline.scss';
 
 export type InlineProps = {
-	imgLocation?: string;
-	altString?: string;
+	imgLocation: string;
+	altString: string;
 	isNextPokemon: boolean; // if next pokemon or previous pokemon
 };
 
 export const Inline = (props: InlineProps) => {
 	const image = (): JSX.Element => {
-		return <img key="image" src={props.imgLocation} alt="pokeImage" />;
+		return <img key="image" src={props.imgLocation} alt={props.altString} />;
 	};
 
 	const arrow = (): JSX.Element => {
-		return <img key="arrow" alt="arrowImage" />;
+		return <img key="arrow" alt="arrow" />;
+	};
+
+	const flippedArrow = (): JSX.Element => {
+		return <img key="arrow" alt="arrow" />;
 	};
 
 	const populate = (): JSX.Element => {
@@ -22,7 +26,7 @@ export const Inline = (props: InlineProps) => {
 			result.push(image());
 			result.push(arrow());
 		} else {
-			result.push(arrow());
+			result.push(flippedArrow());
 			result.push(image());
 		}
 		return <React.Fragment>{result}</React.Fragment>;

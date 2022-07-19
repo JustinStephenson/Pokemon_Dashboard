@@ -1,9 +1,26 @@
+import { useEffect, useState } from 'react';
+import { getPicture } from 'shared/pictureRetrival';
+import { useAppSelector } from 'util/hooks';
 import { Inline, InlineProps } from './Inline';
 
-const inlineProps: InlineProps = {
-	isNextPokemon: false,
-};
-
 export const PrevPokemon = () => {
+	const prevPokemonDetails: any = useAppSelector((state) => {
+		return state.prevPokemon;
+	});
+	const [inlineProps, setInlineProps] = useState<InlineProps>({
+		imgLocation: '',
+		altString: 'pokeImg',
+		isNextPokemon: true,
+	});
+
+	useEffect(() => {
+		if (prevPokemonDetails) {
+			const loc: string = prevPokemonDetails.sprites['front_default'];
+			getPicture(loc).then((imgUrl) => {
+				setInlineProps({ ...inlineProps, imgLocation: imgUrl });
+			});
+		}
+	}, [prevPokemonDetails]);
+
 	return <Inline {...inlineProps} />;
 };
