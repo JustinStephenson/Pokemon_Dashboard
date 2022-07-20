@@ -6,6 +6,7 @@ import { Evolution } from './pokemon-pictures/evolution/Evolution';
 import { PrevPokemon } from './pokemon-pictures/prev-next-pokemon/PrevPokemon';
 import { NextPokemon } from './pokemon-pictures/prev-next-pokemon/NextPokemon';
 import { Statistics } from './statistics/Statistics';
+import { PokemonMessage } from './message/PokemonMessage';
 
 export const App = (): JSX.Element => {
 	return (
@@ -21,6 +22,7 @@ export const App = (): JSX.Element => {
 				<Info />
 				<div className="split-section-2">
 					<Statistics />
+					<PokemonMessage />
 				</div>
 			</div>
 		</div>

@@ -5,8 +5,6 @@ import { numToDec, mToFeet, kgToLbs } from 'util/conversions';
 import { CheckBox } from 'components/checkbox/CheckBox';
 import './Info.scss';
 
-export type InfoProps = {};
-
 export type PokemonTypes = {
 	slot: number;
 	type: { name: string; url: string };
@@ -18,7 +16,7 @@ export type PokemonAbilities = {
 	slot: number;
 };
 
-export const Info = (props: InfoProps) => {
+export const Info = () => {
 	const pokemonDetails: any = useAppSelector((state) => {
 		return state.pokemonDetails;
 	});
