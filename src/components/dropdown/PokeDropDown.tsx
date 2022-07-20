@@ -9,18 +9,23 @@ export const PokeDropDown = () => {
 	const allPokemon: Pokemon[] = useAppSelector((state) => {
 		return state.pokemonAll;
 	});
+	const pokemonDetails: any = useAppSelector((state) => {
+		return state.pokemonDetails;
+	});
 
 	// Component state
 	let [dropDownProps, setDropDownProps] = useState<DropDownProps>({
-		initial: 'Select Pokemon',
+		value: 'Select Pokemon',
 		text: [],
 		callback: () => {},
 	});
 
+	// initialize (call Api)
 	useEffect(() => {
 		getAllPokemon();
 	}, []);
 
+	// update dropdown values when we get list of all pokemon
 	useEffect(() => {
 		if (allPokemon) {
 			setDropDownProps({
@@ -34,6 +39,13 @@ export const PokeDropDown = () => {
 			});
 		}
 	}, [allPokemon]);
+
+	// update dropdown value when pokemon is selected by other means
+	useEffect(() => {
+		if (pokemonDetails) {
+			setDropDownProps({ ...dropDownProps, value: pokemonDetails.name });
+		}
+	}, [pokemonDetails]);
 
 	const fillTextWithPokemonName = (pokeList: Pokemon[]): string[] => {
 		return pokeList.map((poke) => {
