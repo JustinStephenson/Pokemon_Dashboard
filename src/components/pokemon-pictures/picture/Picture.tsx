@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../util/hooks';
-import { getPicture } from 'shared/pictureRetrival';
+import { getPicture } from 'util/pictureRetrival';
 import './Picture.scss';
 
 export const Picture = () => {

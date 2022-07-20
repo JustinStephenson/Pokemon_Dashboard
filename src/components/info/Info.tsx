@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../util/hooks';
 import { getImgImportFromName, ImgImport } from 'img/types';
-import { numToDec, mToFeet, kgToLbs } from 'shared/conversions';
+import { numToDec, mToFeet, kgToLbs } from 'util/conversions';
 import { CheckBox } from 'components/checkbox/CheckBox';
 import './Info.scss';
 

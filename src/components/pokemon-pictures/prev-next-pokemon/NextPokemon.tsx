@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getPicture } from 'shared/pictureRetrival';
+import { getPicture } from 'util/pictureRetrival';
 import { useAppSelector } from 'util/hooks';
 import { Inline, InlineProps } from './Inline';
 
