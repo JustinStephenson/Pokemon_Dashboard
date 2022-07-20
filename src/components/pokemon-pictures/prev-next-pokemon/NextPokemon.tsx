@@ -11,13 +11,18 @@ export const NextPokemon = () => {
 		imgLocation: '',
 		altString: 'pokeImg',
 		isNextPokemon: true,
+		pokemonId: 0,
 	});
 
 	useEffect(() => {
 		if (nextPokemonDetails) {
 			const loc: string = nextPokemonDetails.sprites['front_default'];
 			getPicture(loc).then((imgUrl) => {
-				setInlineProps({ ...inlineProps, imgLocation: imgUrl });
+				setInlineProps({
+					...inlineProps,
+					imgLocation: imgUrl,
+					pokemonId: nextPokemonDetails.id,
+				});
 			});
 		} else {
 			setInlineProps({ ...inlineProps, imgLocation: '' });

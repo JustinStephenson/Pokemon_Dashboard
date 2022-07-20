@@ -1,11 +1,13 @@
 import React from 'react';
 import arrowImg from 'img/arrow/arrow_transparent.png';
+import { getPokemonDetailsById } from 'util/apiCall';
 import './Inline.scss';
 
 export type InlineProps = {
 	imgLocation: string;
 	altString: string;
 	isNextPokemon: boolean; // if next pokemon or previous pokemon
+	pokemonId: number;
 };
 
 export const Inline = (props: InlineProps) => {
@@ -24,6 +26,10 @@ export const Inline = (props: InlineProps) => {
 		);
 	};
 
+	const clicked = () => {
+		getPokemonDetailsById(props.pokemonId);
+	};
+
 	const populate = (): JSX.Element => {
 		let result: JSX.Element[] = [];
 		if (props.imgLocation) {
@@ -39,5 +45,14 @@ export const Inline = (props: InlineProps) => {
 		return <React.Fragment>{result}</React.Fragment>;
 	};
 
-	return <div className="inline">{populate()}</div>;
+	return (
+		<div
+			className="inline"
+			onClick={() => {
+				clicked();
+			}}
+		>
+			{populate()}
+		</div>
+	);
 };
