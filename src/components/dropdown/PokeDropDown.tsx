@@ -24,7 +24,7 @@ export const PokeDropDown = () => {
 	useEffect(() => {
 		if (allPokemon) {
 			setDropDownProps({
-				text: fillTextWithPokemon(allPokemon),
+				text: fillTextWithPokemonName(allPokemon),
 				callback: (index: number) => {
 					// index, is the pos in the array of given pokemon
 					// this corresponds to the id + 1 of the pokemon
@@ -35,7 +35,7 @@ export const PokeDropDown = () => {
 		}
 	}, [allPokemon]);
 
-	const fillTextWithPokemon = (pokeList: Pokemon[]): string[] => {
+	const fillTextWithPokemonName = (pokeList: Pokemon[]): string[] => {
 		return pokeList.map((poke) => {
 			return poke.name;
 		});
