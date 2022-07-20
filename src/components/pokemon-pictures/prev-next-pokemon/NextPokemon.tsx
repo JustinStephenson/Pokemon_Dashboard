@@ -19,6 +19,8 @@ export const NextPokemon = () => {
 			getPicture(loc).then((imgUrl) => {
 				setInlineProps({ ...inlineProps, imgLocation: imgUrl });
 			});
+		} else {
+			setInlineProps({ ...inlineProps, imgLocation: '' });
 		}
 	}, [nextPokemonDetails]);
 

@@ -26,13 +26,16 @@ export const Inline = (props: InlineProps) => {
 
 	const populate = (): JSX.Element => {
 		let result: JSX.Element[] = [];
-		if (props.isNextPokemon) {
-			result.push(image());
-			result.push(arrow());
-		} else {
-			result.push(arrow());
-			result.push(image());
+		if (props.imgLocation) {
+			if (props.isNextPokemon) {
+				result.push(image());
+				result.push(arrow());
+			} else {
+				result.push(arrow());
+				result.push(image());
+			}
 		}
+
 		return <React.Fragment>{result}</React.Fragment>;
 	};
 
