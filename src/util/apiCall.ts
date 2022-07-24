@@ -1,3 +1,4 @@
+import { pokeApi } from 'api/pokeApi';
 import { bindActionCreators } from 'redux';
 import { pokemonActions } from 'store/actions';
 import { store } from 'store/store';
@@ -17,4 +18,10 @@ export const getAllPokemon = (): void => {
 export const getPokemonDetailsById = (id: number): void => {
 	fetchPokemonDetails(id); // also gets prev and next pokemon details
 	fetchPokemonSpecies(id);
+};
+
+export const getPokeball = async (): Promise<object> => {
+	const url = 'https://pokeapi.co/api/v2/item/poke-ball/';
+	const response = await pokeApi().get(url);
+	return response.data;
 };

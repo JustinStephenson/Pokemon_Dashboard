@@ -1,7 +1,9 @@
+import React from 'react';
 import './Message.scss';
 
 type MessageProps = {
 	message: string;
+	children?: React.ReactNode;
 };
 
 export const Message = (props: MessageProps) => {
@@ -11,9 +13,9 @@ export const Message = (props: MessageProps) => {
 	};
 
 	return (
-		<div className="message">
+		<React.Fragment>
 			{/* <p className="message-title">Description</p> */}
-			<p className="message-text">{cleanText(props.message)}</p>
-		</div>
+			<p className="message">{cleanText(props.message)}</p>
+		</React.Fragment>
 	);
 };
