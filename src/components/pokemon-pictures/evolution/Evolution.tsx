@@ -1,9 +1,7 @@
 import { useAppSelector } from 'util/hooks';
 import './Evolution.scss';
 
-export type EvolutionProps = {};
-
-export const Evolution = (props: EvolutionProps) => {
+export const Evolution = () => {
 	const pokemonSpecies: any = useAppSelector((state) => {
 		return state.pokemonSpecies;
 	});
