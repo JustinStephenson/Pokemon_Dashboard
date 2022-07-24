@@ -11,7 +11,8 @@ export const Picture = () => {
 
 	useEffect(() => {
 		if (pokemonDetails) {
-			const loc: string = pokemonDetails.sprites['front_default'];
+			const loc: string =
+				pokemonDetails.sprites.other['official-artwork']['front_default'];
 			getPicture(loc).then((imgUrl) => {
 				setPokePic(imgUrl);
 			});

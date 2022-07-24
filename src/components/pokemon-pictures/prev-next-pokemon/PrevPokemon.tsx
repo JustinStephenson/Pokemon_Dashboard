@@ -16,7 +16,8 @@ export const PrevPokemon = () => {
 
 	useEffect(() => {
 		if (prevPokemonDetails) {
-			const loc: string = prevPokemonDetails.sprites['front_default'];
+			const loc: string =
+				prevPokemonDetails.sprites.other['official-artwork']['front_default'];
 			getPicture(loc).then((imgUrl) => {
 				setInlineProps({
 					...inlineProps,

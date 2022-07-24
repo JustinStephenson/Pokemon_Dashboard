@@ -12,7 +12,14 @@ export type InlineProps = {
 
 export const Inline = (props: InlineProps) => {
 	const image = (): JSX.Element => {
-		return <img key="image" src={props.imgLocation} alt={props.altString} />;
+		return (
+			<img
+				key="img"
+				className="img"
+				src={props.imgLocation}
+				alt={props.altString}
+			/>
+		);
 	};
 
 	const arrow = (): JSX.Element => {
