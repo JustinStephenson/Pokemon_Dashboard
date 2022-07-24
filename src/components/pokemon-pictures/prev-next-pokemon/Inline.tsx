@@ -49,8 +49,8 @@ export const Inline = (props: InlineProps) => {
 			}
 		} else {
 			// preserve spacing if no img is given, edge cases.
-			result.push(<div className="img"></div>);
-			result.push(<div className="arrow"></div>);
+			result.push(<div key="img" className="img"></div>);
+			result.push(<div key="arrow" className="arrow"></div>);
 		}
 
 		return <React.Fragment>{result}</React.Fragment>;
