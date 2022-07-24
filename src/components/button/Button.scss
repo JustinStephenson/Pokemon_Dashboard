@@ -9,8 +9,8 @@
 	text-transform: capitalize;
 	cursor: pointer;
 	outline: inherit;
-	width: 10rem;
-	height: 5rem;
+	width: var(--button-width);
+	height: var(--button-height);
 
 	&:hover {
 		background-color: var(--button-color-hover);

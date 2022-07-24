@@ -27,12 +27,13 @@ export const getPokemonAndNeighborInfo = (id: number): void => {
 	fetchPokemonSpecies(id);
 };
 
-export const getPokeball = async (): Promise<object> => {
+export const getPokeball = async (): Promise<any> => {
 	const url = 'https://pokeapi.co/api/v2/item/poke-ball/';
 	const response = await pokeApi().get(url);
 	return response.data;
 };
 
-export const getEvolutionChain = async (id: number) => {
-	return null;
+export const getApiResponseFromUrl = async (url: string): Promise<any> => {
+	const response = await pokeApi().get(url);
+	return response.data;
 };
