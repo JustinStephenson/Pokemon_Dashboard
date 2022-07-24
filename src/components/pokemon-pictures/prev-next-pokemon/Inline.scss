@@ -17,12 +17,14 @@
 .arrow {
 	display: block;
 	align-self: center;
-	width: 100%;
+	justify-self: start;
+	width: var(--img-arrow);
 
 	&-flipped {
 		display: block;
 		align-self: center;
-		width: 100%;
+		justify-self: end;
+		width: var(--img-arrow);
 		transform: scaleX(-1);
 	}
 }

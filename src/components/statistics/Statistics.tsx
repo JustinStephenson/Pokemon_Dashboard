@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../util/hooks';
 import './Statistics.scss';
 
-export type StatisticsProps = {};
-
 type PokeStats = {
 	base_stat: number;
 	effort: number;
@@ -13,7 +11,7 @@ type PokeStats = {
 	};
 };
 
-export const Statistics = (props: StatisticsProps) => {
+export const Statistics = () => {
 	const pokemonDetails: any = useAppSelector((state) => {
 		return state.pokemonDetails;
 	});
