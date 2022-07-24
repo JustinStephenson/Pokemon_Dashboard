@@ -84,23 +84,22 @@ export const fetchAllPokemon = () => {
 export const fetchPokemonDetails = (id: number) => {
 	return async (dispatch: Dispatch<Action>, getState: any) => {
 		const currentPokemonResponse = await pokeApi().get(`/pokemon/${id}`);
-		let prevPokemonResponse: AxiosResponse<any, any> | null = null;
-		let nextPokemonResponse: AxiosResponse<any, any> | null = null;
-
-		// check if there is a prev pokemon
-		if (id - 1 !== 0) {
-			prevPokemonResponse = await pokeApi().get(`/pokemon/${id - 1}`);
-		}
-
-		// check if there is a next pokemon
-		if (id + 1 <= getState().pokemonCount) {
-			nextPokemonResponse = await pokeApi().get(`/pokemon/${id + 1}`);
-		}
 
 		dispatch<FetchPokemonDetails>({
 			type: ActionTypes.FETCH_POKEMON_DETAILS,
 			payload: currentPokemonResponse.data,
 		});
+	};
+};
+
+export const fetchPrevPokemonDetails = (id: number) => {
+	return async (dispatch: Dispatch<Action>, getState: any) => {
+		let prevPokemonResponse: AxiosResponse<any, any> | null = null;
+
+		// check if there is a prev pokemon
+		if (id - 1 !== 0) {
+			prevPokemonResponse = await pokeApi().get(`/pokemon/${id - 1}`);
+		}
 
 		if (!!prevPokemonResponse) {
 			dispatch<FetchPrevPokemonDetails>({
@@ -112,6 +111,17 @@ export const fetchPokemonDetails = (id: number) => {
 				type: ActionTypes.FETCH_PREV_POKEMON_DETAILS,
 				payload: null,
 			});
+		}
+	};
+};
+
+export const fetchNextPokemonDetails = (id: number) => {
+	return async (dispatch: Dispatch<Action>, getState: any) => {
+		let nextPokemonResponse: AxiosResponse<any, any> | null = null;
+
+		// check if there is a next pokemon
+		if (id + 1 <= getState().pokemonCount) {
+			nextPokemonResponse = await pokeApi().get(`/pokemon/${id + 1}`);
 		}
 
 		if (!!nextPokemonResponse) {

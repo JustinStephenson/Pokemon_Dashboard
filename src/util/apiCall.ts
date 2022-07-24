@@ -8,15 +8,22 @@ import { store } from 'store/store';
 // const { fetchAllPokemon, fetchPokemonDetails, fetchPokemonSpecies } =
 // 	bindActionCreators(pokemonActions, dispatch);
 
-const { fetchAllPokemon, fetchPokemonDetails, fetchPokemonSpecies } =
-	bindActionCreators(pokemonActions, store.dispatch);
+const {
+	fetchAllPokemon,
+	fetchPokemonDetails,
+	fetchPokemonSpecies,
+	fetchPrevPokemonDetails,
+	fetchNextPokemonDetails,
+} = bindActionCreators(pokemonActions, store.dispatch);
 
 export const getAllPokemon = (): void => {
 	fetchAllPokemon();
 };
 
 export const getPokemonAndNeighborInfo = (id: number): void => {
-	fetchPokemonDetails(id); // also gets prev and next pokemon details
+	fetchPokemonDetails(id);
+	fetchPrevPokemonDetails(id);
+	fetchNextPokemonDetails(id);
 	fetchPokemonSpecies(id);
 };
 
