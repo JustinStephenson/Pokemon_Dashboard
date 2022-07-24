@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../util/hooks';
 import { Pokemon } from '../../store/actions';
 import { DropDown, DropDownProps } from './DropDown';
-import { getAllPokemon, getPokemonDetailsById } from 'util/apiCall';
+import { getAllPokemon, getPokemonAndNeighborInfo } from 'util/apiCall';
 
 export const PokeDropDown = () => {
 	// Global state
@@ -34,7 +34,7 @@ export const PokeDropDown = () => {
 					// index, is the pos in the array of given pokemon
 					// this corresponds to the id + 1 of the pokemon
 					const pokeIndex = index + 1;
-					getPokemonDetailsById(pokeIndex);
+					getPokemonAndNeighborInfo(pokeIndex);
 				},
 			});
 		}

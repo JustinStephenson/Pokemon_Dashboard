@@ -1,0 +1,23 @@
+.button {
+	background: none;
+	color: inherit;
+	border: solid var(--border-size-info);
+	border-radius: 1rem;
+	padding: 0.25rem 0.5rem;
+	font: inherit;
+	font-weight: bold;
+	text-transform: capitalize;
+	cursor: pointer;
+	outline: inherit;
+	width: 10rem;
+	height: 5rem;
+
+	&:hover {
+		background-color: var(--button-color-hover);
+	}
+
+	&:active,
+	&:focus {
+		background-color: var(--button-color-click);
+	}
+}

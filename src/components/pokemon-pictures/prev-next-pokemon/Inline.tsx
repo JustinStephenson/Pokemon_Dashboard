@@ -1,6 +1,6 @@
 import React from 'react';
 import arrowImg from 'img/arrow/arrow_transparent.png';
-import { getPokemonDetailsById } from 'util/apiCall';
+import { getPokemonAndNeighborInfo } from 'util/apiCall';
 import './Inline.scss';
 
 export type InlineProps = {
@@ -34,7 +34,7 @@ export const Inline = (props: InlineProps) => {
 	};
 
 	const clicked = () => {
-		getPokemonDetailsById(props.pokemonId);
+		getPokemonAndNeighborInfo(props.pokemonId);
 	};
 
 	const populate = (): JSX.Element => {

@@ -15,7 +15,7 @@ export const getAllPokemon = (): void => {
 	fetchAllPokemon();
 };
 
-export const getPokemonDetailsById = (id: number): void => {
+export const getPokemonAndNeighborInfo = (id: number): void => {
 	fetchPokemonDetails(id); // also gets prev and next pokemon details
 	fetchPokemonSpecies(id);
 };
@@ -24,4 +24,8 @@ export const getPokeball = async (): Promise<object> => {
 	const url = 'https://pokeapi.co/api/v2/item/poke-ball/';
 	const response = await pokeApi().get(url);
 	return response.data;
+};
+
+export const getEvolutionChain = async (id: number) => {
+	return null;
 };

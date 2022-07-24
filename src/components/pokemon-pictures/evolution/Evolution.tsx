@@ -1,10 +1,6 @@
-import { useAppSelector } from 'util/hooks';
+import React from 'react';
 import './Evolution.scss';
 
 export const Evolution = () => {
-	const pokemonSpecies: any = useAppSelector((state) => {
-		return state.pokemonSpecies;
-	});
-
-	return <div className="evolution"></div>;
+	return <div>Evolution</div>;
 };

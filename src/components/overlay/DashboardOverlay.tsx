@@ -14,5 +14,9 @@ export const DashboardOverlay = () => {
 		}
 	}, [pokemonDetails]);
 
-	return <Overlay show={showOverlay} />;
+	const customStyle: React.CSSProperties = {
+		height: '80vh',
+	};
+
+	return <Overlay show={showOverlay} style={customStyle} />;
 };
