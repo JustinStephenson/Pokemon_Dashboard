@@ -19,9 +19,12 @@ export const Picture = () => {
 		}
 	}, [pokemonDetails]);
 
-	return (
-		<div className="picture">
-			<img src={pokePic} />
-		</div>
-	);
+	const populatePic = (): JSX.Element | null => {
+		if (pokePic) {
+			return <img src={pokePic} alt="PokemonImg" />;
+		}
+		return null;
+	};
+
+	return <div className="picture">{populatePic()}</div>;
 };
