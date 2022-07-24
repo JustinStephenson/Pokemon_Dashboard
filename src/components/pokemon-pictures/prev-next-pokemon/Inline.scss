@@ -9,8 +9,8 @@
 
 .img {
 	display: inline-block;
-	width: 10rem;
-	height: 10rem;
+	width: var(--img-small-size);
+	height: var(--img-small-size);
 	align-self: center;
 }
 
