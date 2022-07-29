@@ -35,17 +35,14 @@ export const Evolution = (props: EvolutionProps) => {
 		let pokemonSeq: number[] = setupSequence();
 		let images: JSX.Element[] = [];
 		let keyValue = 0;
-		// if length is 1, no pokemon evolutions, only self
-		if (pokemonSeq.length > 1) {
-			for (const seq of pokemonSeq) {
-				await getPictureById(seq).then((imgUrl) => {
-					images.push(
-						<div key={keyValue++} className="evolution">
-							<img src={imgUrl} alt="evolution" />
-						</div>
-					);
-				});
-			}
+		for (const seq of pokemonSeq) {
+			await getPictureById(seq).then((imgUrl) => {
+				images.push(
+					<div key={keyValue++} className="evolution">
+						<img src={imgUrl} alt="evolution" />
+					</div>
+				);
+			});
 		}
 		return images;
 	};
