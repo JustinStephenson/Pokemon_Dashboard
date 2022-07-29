@@ -59,7 +59,8 @@ export const PokemonPic = () => {
 
 	useEffect(() => {
 		setDisplay(mainDisplay());
-	}, [isEvoButton, isVarButton]);
+		console.log('render');
+	}, [isEvoButton, isVarButton, evoProps, varProps]);
 
 	const mainDisplay = (): JSX.Element => {
 		return (

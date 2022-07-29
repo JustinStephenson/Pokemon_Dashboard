@@ -1,0 +1,14 @@
+.evolution {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: var(--img-medium-size);
+	width: var(--img-medium-size);
+
+	img {
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+	}
+}

@@ -1,17 +1,21 @@
+import React, { useEffect, useState } from 'react';
+import { getPictureById } from 'util/pictureRetrival';
 import './Evolution.scss';
 
 export type EvolutionChain = {
 	baby_trigger_item: string;
-	chain: {
-		evolution_details: object[];
-		evolves_to: object[];
-		is_baby: boolean;
-		species: {
-			name: string;
-			url: string;
-		};
-	};
+	chain: Chain;
 	id: string;
+};
+
+type Chain = {
+	evolution_details: object[];
+	evolves_to: Chain[];
+	is_baby: boolean;
+	species: {
+		name: string;
+		url: string;
+	};
 };
 
 export type EvolutionProps = {
@@ -19,5 +23,52 @@ export type EvolutionProps = {
 };
 
 export const Evolution = (props: EvolutionProps) => {
-	return <div>Evolution</div>;
+	const [evolutions, setEvolutions] = useState<JSX.Element[]>([]);
+
+	useEffect(() => {
+		setup().then((imgList) => {
+			setEvolutions(imgList);
+		});
+	}, []);
+
+	const setup = async (): Promise<JSX.Element[]> => {
+		let pokemonSeq: number[] = setupSequence();
+		let images: JSX.Element[] = [];
+		let keyValue = 0;
+		// if length is 1, no pokemon evolutions, only self
+		if (pokemonSeq.length > 1) {
+			for (const seq of pokemonSeq) {
+				await getPictureById(seq).then((imgUrl) => {
+					images.push(
+						<div key={keyValue++} className="evolution">
+							<img src={imgUrl} alt="evolution" />
+						</div>
+					);
+				});
+			}
+		}
+		return images;
+	};
+
+	const setupSequence = (): number[] => {
+		let result: number[] = [];
+		if (props.evolutionDetails) {
+			let currentChain: Chain = props.evolutionDetails.chain;
+			result.push(getIdFromUrl(currentChain.species.url));
+			while (currentChain.evolves_to.length > 0) {
+				// get next sequence in current chain
+				currentChain = currentChain.evolves_to[0];
+				// set the values of pokemonSeq
+				result.push(getIdFromUrl(currentChain.species.url));
+			}
+		}
+		return result;
+	};
+
+	//TODO: improve this to be more generic
+	const getIdFromUrl = (url: string): number => {
+		return parseInt(url.split('/')[6]);
+	};
+
+	return <React.Fragment>{evolutions}</React.Fragment>;
 };
