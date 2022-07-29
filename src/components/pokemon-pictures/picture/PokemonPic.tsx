@@ -51,6 +51,8 @@ export const PokemonPic = () => {
 			if (varieties.length > 1) {
 				setIsVarButton(true);
 				setVarProps({ ...varProps, VarietyDetails: varieties });
+			} else {
+				setIsVarButton(false);
 			}
 		}
 	}, [pokemonSpecies]);
