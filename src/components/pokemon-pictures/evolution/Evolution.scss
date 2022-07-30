@@ -1,15 +1,11 @@
 .evolution {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
 	height: var(--img-medium-size);
 	width: var(--img-medium-size);
 
 	&--arrow {
 		font-size: 5rem;
 		font-weight: 500;
-		margin: 0 1rem;
+		margin: 0 2rem;
 	}
 
 	img {

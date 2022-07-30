@@ -39,14 +39,16 @@ export const Evolution = (props: EvolutionProps) => {
 			await getPictureById(seq).then((imgUrl) => {
 				if (seq === pokemonSeq[pokemonSeq.length - 1]) {
 					images.push(
-						<div key={keyValue++} className="evolution">
-							<img src={imgUrl} alt="evolution" />
-						</div>
+						<React.Fragment key={keyValue++}>
+							<div className="evolution">
+								<img src={imgUrl} alt="evolution" />
+							</div>
+						</React.Fragment>
 					);
 				} else {
 					images.push(
-						<React.Fragment>
-							<div key={keyValue++} className="evolution">
+						<React.Fragment key={keyValue++}>
+							<div className="evolution">
 								<img src={imgUrl} alt="evolution" />
 							</div>
 							<p className="evolution--arrow">&gt;</p>

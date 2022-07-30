@@ -28,7 +28,7 @@ export const PokemonPic = () => {
 		evolutionDetails: null,
 	});
 	const [varProps, setVarProps] = useState<VarietiesProps>({
-		VarietyDetails: null,
+		varietyDetails: null,
 	});
 
 	useEffect(() => {
@@ -50,7 +50,7 @@ export const PokemonPic = () => {
 			const varieties: VarietiesType = pokemonSpecies.varieties;
 			if (varieties.length > 1) {
 				setIsVarButton(true);
-				setVarProps({ ...varProps, VarietyDetails: varieties });
+				setVarProps({ ...varProps, varietyDetails: varieties });
 			} else {
 				setIsVarButton(false);
 			}
@@ -59,7 +59,6 @@ export const PokemonPic = () => {
 
 	useEffect(() => {
 		setDisplay(mainDisplay());
-		console.log('render');
 	}, [isEvoButton, isVarButton, evoProps, varProps]);
 
 	const mainDisplay = (): JSX.Element => {
@@ -75,7 +74,7 @@ export const PokemonPic = () => {
 	const variatesDisplay = (): JSX.Element => {
 		return (
 			<AdvancedDisplay onGoBackClick={onGoBackClick}>
-				<Varieties VarietyDetails={varProps.VarietyDetails} />
+				<Varieties varietyDetails={varProps.varietyDetails} />
 			</AdvancedDisplay>
 		);
 	};
