@@ -6,6 +6,12 @@
 	height: var(--img-medium-size);
 	width: var(--img-medium-size);
 
+	&--arrow {
+		font-size: 5rem;
+		font-weight: 500;
+		margin: 0 1rem;
+	}
+
 	img {
 		display: inline-block;
 		width: 100%;
