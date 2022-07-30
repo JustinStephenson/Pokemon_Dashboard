@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/Pokemon_Dashboard/static/css/main.7c321879.css",
+    "main.js": "/Pokemon_Dashboard/static/js/main.6355539c.js",
+    "static/media/pokemon-logo-text.png": "/Pokemon_Dashboard/static/media/pokemon-logo-text.c8e5f5413616d2d8709c.png",
+    "static/media/arrow_transparent.png": "/Pokemon_Dashboard/static/media/arrow_transparent.b03cd381b0ea0992c98b.png",
+    "static/media/type_dragon.png": "/Pokemon_Dashboard/static/media/type_dragon.f755f101c2e0a4962f16.png",
+    "static/media/type_poison.png": "/Pokemon_Dashboard/static/media/type_poison.c960f0c2a3fc35479ed0.png",
+    "static/media/type_grass.png": "/Pokemon_Dashboard/static/media/type_grass.335ea77111c931c8f857.png",
+    "static/media/type_ghost.png": "/Pokemon_Dashboard/static/media/type_ghost.a3db355758b17c4605ea.png",
+    "static/media/type_psychic.png": "/Pokemon_Dashboard/static/media/type_psychic.bb4772ddb56501ca46f0.png",
+    "static/media/type_ground.png": "/Pokemon_Dashboard/static/media/type_ground.bb087189c4c0f26f15e1.png",
+    "static/media/type_normal.png": "/Pokemon_Dashboard/static/media/type_normal.0a85c11dde0c078e529c.png",
+    "static/media/type_rock.png": "/Pokemon_Dashboard/static/media/type_rock.8a9675472804c3c448b7.png",
+    "static/media/type_dark.png": "/Pokemon_Dashboard/static/media/type_dark.409d0d86473b7c4f5f36.png",
+    "static/media/type_fighting.png": "/Pokemon_Dashboard/static/media/type_fighting.3edcd855c15e0721d9b7.png",
+    "static/media/type_water.png": "/Pokemon_Dashboard/static/media/type_water.3e76336098656e3a9339.png",
+    "static/media/type_bug.png": "/Pokemon_Dashboard/static/media/type_bug.a7f07ec814d072e82b17.png",
+    "static/media/type_electric.png": "/Pokemon_Dashboard/static/media/type_electric.d2d670b92df43e89dbbd.png",
+    "static/media/type_fairy.png": "/Pokemon_Dashboard/static/media/type_fairy.e2b702c13f38ab43da0e.png",
+    "static/media/type_flying.png": "/Pokemon_Dashboard/static/media/type_flying.14367e2bf83dd8102483.png",
+    "index.html": "/Pokemon_Dashboard/index.html",
+    "main.7c321879.css.map": "/Pokemon_Dashboard/static/css/main.7c321879.css.map",
+    "main.6355539c.js.map": "/Pokemon_Dashboard/static/js/main.6355539c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c321879.css",
+    "static/js/main.6355539c.js"
+  ]
+}
