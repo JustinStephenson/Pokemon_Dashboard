@@ -1,0 +1,42 @@
+// CSS Variables
+:root {
+	// Colors
+	--color-primary: black;
+	--color-white: #fff;
+
+	// Background Color
+	--color-background: rgb(250, 250, 250);
+
+	// Colors for Base Stats
+	--base-stat-color-red: rgb(220, 0, 0);
+	--base-stat-color-orange: rgb(236, 155, 4);
+	--base-stat-color-yellow: rgb(218, 200, 0);
+	--base-stat-color-blue: rgb(97, 97, 255);
+	--base-stat-color-green: rgb(75, 184, 75);
+	--base-stat-color-pink: rgb(255, 138, 158);
+
+	// Colors for Table
+	--table-color-entry: rgb(196, 178, 171);
+
+	// Colors for Buttons
+	--button-color-hover: rgb(220, 220, 220);
+	--button-color-click: rgb(200, 200, 200);
+
+	// Values
+	--total-num-of-stats: 6;
+	--total-stat-count: 255;
+
+	// Border
+	--border-size-info: 0.2rem;
+
+	// Images
+	--img-size-big: 22.5rem;
+	--img-medium-size: 15rem;
+	--img-small-size: 10rem;
+	--img-arrow: 4rem;
+	--img-pixel: 5rem;
+
+	// Button Sizes
+	--button-width: 10rem;
+	--button-height: 5rem;
+}
