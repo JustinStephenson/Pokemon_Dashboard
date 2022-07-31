@@ -1,3 +1,5 @@
+@import '/styles/responsive';
+
 .evolution {
 	height: var(--img-medium-size);
 	width: var(--img-medium-size);
@@ -5,7 +7,11 @@
 	&--arrow {
 		font-size: 5rem;
 		font-weight: 500;
-		margin: 0 2rem;
+		margin: 0 1.5rem;
+
+		@include respond($bp-medium) {
+			margin: 0 0.5rem;
+		}
 	}
 
 	img {

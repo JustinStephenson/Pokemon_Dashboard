@@ -3,9 +3,29 @@
 .u-margin-sides-big {
 	margin-left: 10rem;
 	margin-right: 10rem;
+
+	@include respond($bp-medium) {
+		margin-left: 7.5rem;
+		margin-right: 7.5rem;
+	}
+
+	@include respond($bp-small) {
+		margin-left: 5rem;
+		margin-right: 5rem;
+	}
 }
 
 .u-margin-sides-medium {
 	margin-left: 5rem;
 	margin-right: 5rem;
+
+	@include respond($bp-medium) {
+		margin-left: 4rem;
+		margin-right: 4rem;
+	}
+
+	@include respond($bp-small) {
+		margin-left: 2.5rem;
+		margin-right: 2.5rem;
+	}
 }

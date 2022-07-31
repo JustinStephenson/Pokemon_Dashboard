@@ -1,5 +1,11 @@
+@import '/styles/responsive';
+
 .message {
 	font-size: 2rem;
 	text-align: center;
 	margin: auto 5rem;
+
+	@include respond($bp-medium) {
+		margin: auto 2.5rem;
+	}
 }

@@ -1,9 +1,9 @@
 // RESPONSIVE BREAKPOINTS
 $bp-largest: 1200px;
 $bp-large: 1000px;
-$bp-medium: 800px;
-$bp-small: 600px;
-$bp-smallest: 500px;
+$bp-medium: 900px;
+$bp-small: 750px;
+$bp-smaller: 650px;
 
 // media query mixin
 @mixin respond($breakpoint) {
