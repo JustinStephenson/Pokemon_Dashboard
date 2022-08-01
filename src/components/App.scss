@@ -55,7 +55,6 @@ body {
 		justify-content: center;
 		justify-items: center;
 		align-items: center;
-		background-color: aquamarine;
 	}
 
 	&__section-2 {
@@ -64,7 +63,6 @@ body {
 		justify-content: center;
 		justify-items: center;
 		align-items: center;
-		background-color: burlywood;
 
 		@include respond($bp-medium) {
 			grid-template-columns: 1fr;
