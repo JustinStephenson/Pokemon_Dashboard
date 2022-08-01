@@ -18,7 +18,6 @@ export const PokeDropDown = () => {
 		clickItemCallback: () => {},
 	});
 	const [dropDownPokemon, setDropDownPokemon] = useState<Pokemon[]>([]);
-	const [key, setKey] = useState<number>(0);
 
 	// initialize (call Api)
 	useEffect(() => {
