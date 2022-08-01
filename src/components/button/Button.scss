@@ -1,3 +1,5 @@
+@import '/styles/responsive';
+
 .button {
 	background: none;
 	color: inherit;
@@ -11,6 +13,14 @@
 	outline: inherit;
 	width: var(--button-width);
 	height: var(--button-height);
+
+	@include respond($bp-small-3) {
+		font-size: 1.25rem;
+	}
+
+	@include respond($bp-small-5) {
+		font-size: 1.15rem;
+	}
 
 	&:hover {
 		background-color: var(--button-color-hover);

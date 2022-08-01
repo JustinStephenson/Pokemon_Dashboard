@@ -3,7 +3,7 @@
 .stats {
 	grid-column: 2 / -1;
 	display: grid;
-	grid-template-columns: min-content 1fr;
+	grid-template-columns: min-content 1fr 3rem;
 	grid-template-rows: 1fr 5fr;
 
 	width: 100%;
@@ -20,6 +20,10 @@
 		font-weight: bold;
 		text-decoration: underline;
 		color: var(--color-primary);
+
+		@include respond($bp-small-4) {
+			font-size: 1.5rem;
+		}
 	}
 
 	&__name {
@@ -31,6 +35,10 @@
 		align-items: center;
 		margin-right: 1rem;
 		color: var(--color-primary);
+
+		@include respond($bp-small-4) {
+			font-size: 1.25rem;
+		}
 
 		p {
 			display: inline-block;
@@ -93,11 +101,16 @@
 		}
 
 		&-num {
-			transform: translateX(3.25rem);
+			transform: translateX(3.15rem);
 			font-size: 1.6rem;
 			font-weight: 600;
 			height: 100%;
 			padding: 0.25rem 0rem;
+
+			@include respond($bp-small-4) {
+				font-size: 1.25rem;
+				padding: 0.6rem 0rem;
+			}
 		}
 	}
 }

@@ -1,3 +1,5 @@
+@import '/styles/responsive';
+
 .header {
 	display: grid;
 	grid-template-rows: 1fr min-content;
@@ -14,5 +16,13 @@
 		height: auto;
 		width: 45rem;
 		margin: 1rem auto;
+
+		@include respond($bp-small-4) {
+			width: 40rem;
+		}
+
+		@include respond($bp-small-5) {
+			width: 35rem;
+		}
 	}
 }

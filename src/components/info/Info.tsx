@@ -120,10 +120,10 @@ export const Info = () => {
 		const heightKg = numToDec(pokeHeight, 1);
 		const heightFeet = mToFeet(+heightKg, 1);
 		return (
-			<React.Fragment>
-				<p className="info__body-bot-hw">{heightKg} m</p>
-				<p className="info__body-bot-hw">{heightFeet}</p>
-			</React.Fragment>
+			<div className="info__body-bot-hw">
+				<p className="info__body-bot-hw-text">{heightKg} m</p>
+				<p className="info__body-bot-hw-text">{heightFeet}</p>
+			</div>
 		);
 	};
 
@@ -133,10 +133,10 @@ export const Info = () => {
 		const weightKg = numToDec(pokeWeight, 1);
 		const weightLbs = kgToLbs(+weightKg, 1);
 		return (
-			<React.Fragment>
-				<p className="info__body-bot-hw">{weightKg} kg</p>
-				<p className="info__body-bot-hw">{weightLbs} lbs</p>
-			</React.Fragment>
+			<div className="info__body-bot-hw">
+				<p className="info__body-bot-hw-text">{weightKg} kg</p>
+				<p className="info__body-bot-hw-text">{weightLbs} lbs</p>
+			</div>
 		);
 	};
 

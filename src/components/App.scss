@@ -38,6 +38,14 @@ body {
 		grid-template-rows: 20vh [header] 25vh [section-1] 52vh [section-2];
 	}
 
+	@include respond($bp-small-2) {
+		grid-template-rows: 20vh [header] 20vh [section-1] 57vh [section-2];
+	}
+
+	@include respond($bp-small-4) {
+		grid-template-rows: 20vh [header] 18vh [section-1] 59vh [section-2];
+	}
+
 	&__section-1 {
 		display: grid;
 		grid-template-columns: min-content 5fr min-content;
@@ -47,6 +55,7 @@ body {
 		justify-content: center;
 		justify-items: center;
 		align-items: center;
+		background-color: aquamarine;
 	}
 
 	&__section-2 {
@@ -55,10 +64,18 @@ body {
 		justify-content: center;
 		justify-items: center;
 		align-items: center;
+		background-color: burlywood;
 
 		@include respond($bp-medium) {
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr 2fr;
+			grid-auto-flow: row;
+			row-gap: var(--main-grid-gap);
+		}
+
+		@include respond($bp-small-2) {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr 1fr;
 			grid-auto-flow: row;
 			row-gap: var(--main-grid-gap);
 		}
