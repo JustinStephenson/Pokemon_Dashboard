@@ -157,6 +157,10 @@
 				font-size: 1.55rem;
 			}
 
+			@include respond($bp-small-6) {
+				font-size: 1.25rem;
+			}
+
 			&-checkbox {
 				background-color: var(--color-white);
 				margin-bottom: 1.5rem;
@@ -172,6 +176,10 @@
 
 				@include respond($bp-small-4) {
 					width: 7.5rem;
+				}
+
+				@include respond($bp-small-7) {
+					width: 6rem;
 				}
 			}
 

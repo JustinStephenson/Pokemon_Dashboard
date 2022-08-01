@@ -23,7 +23,7 @@
 	--button-color-click: rgb(200, 200, 200);
 
 	// Grid Variables
-	--main-grid-gap: 2.5rem;
+	--main-grid-gap: 2.5vh;
 
 	// Values
 	--total-num-of-stats: 6;
@@ -45,7 +45,7 @@
 
 	@include respond($bp-large) {
 		// Grid Variables
-		--main-grid-gap: 1.5rem;
+		--main-grid-gap: 1.5vh;
 
 		// Images
 		--img-size-big: 20rem;
@@ -71,7 +71,7 @@
 	@include respond($bp-small-2) {
 		// Images
 		--img-size-big: 14rem;
-		--img-medium-size: 8rem;
+		--img-medium-size: 7.5rem;
 		--img-small-size: 6.5rem;
 		--img-arrow: 2rem;
 		--img-pixel: 2.5rem;
@@ -96,14 +96,14 @@
 
 	@include respond($bp-small-4) {
 		// Grid Variables
-		--main-grid-gap: 1.5rem;
+		--main-grid-gap: 1.5vh;
 
 		// Images
 		--img-size-big: 11.75rem;
 		--img-medium-size: 5rem;
 		--img-small-size: 3rem;
 		--img-arrow: 1.5rem;
-		--img-pixel: 2rem;
+		--img-pixel: 2.5rem;
 
 		// Button Sizes
 		--button-width: 7rem;
@@ -116,7 +116,7 @@
 		--img-medium-size: 5rem;
 		--img-small-size: 2.75rem;
 		--img-arrow: 1.5rem;
-		--img-pixel: 2rem;
+		--img-pixel: 2.5rem;
 
 		// Button Sizes
 		--button-width: 6.5rem;
@@ -126,13 +126,26 @@
 	@include respond($bp-small-6) {
 		// Images
 		--img-size-big: 8.25rem;
-		--img-medium-size: 5rem;
+		--img-medium-size: 4.25rem;
+		--img-small-size: 2.75rem;
+		--img-arrow: 1.5rem;
+		--img-pixel: 2.5rem;
+
+		// Button Sizes
+		--button-width: 6.5rem;
+		--button-height: 3rem;
+	}
+
+	@include respond($bp-small-7) {
+		// Images
+		--img-size-big: 7.25rem;
+		--img-medium-size: 4.25rem;
 		--img-small-size: 2.75rem;
 		--img-arrow: 1.5rem;
 		--img-pixel: 2rem;
 
 		// Button Sizes
-		--button-width: 6.5rem;
+		--button-width: 6rem;
 		--button-height: 3rem;
 	}
 }

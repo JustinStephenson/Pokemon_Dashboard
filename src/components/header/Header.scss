@@ -24,5 +24,9 @@
 		@include respond($bp-small-5) {
 			width: 35rem;
 		}
+
+		@include respond($bp-small-6) {
+			width: 30rem;
+		}
 	}
 }

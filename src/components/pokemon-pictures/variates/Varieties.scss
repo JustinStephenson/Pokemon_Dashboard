@@ -1,3 +1,5 @@
+@import '/styles/responsive';
+
 .var-container {
 	position: absolute;
 	display: flex;
@@ -37,5 +39,9 @@
 		text-transform: lowercase;
 		font-size: 1.25rem;
 		height: 20%;
+
+		@include respond($bp-small) {
+			font-size: 0.75rem;
+		}
 	}
 }
