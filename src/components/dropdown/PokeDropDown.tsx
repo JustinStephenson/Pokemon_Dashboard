@@ -3,22 +3,22 @@ import { useAppSelector } from '../../util/hooks';
 import { Pokemon } from '../../store/actions';
 import { DropDown, DropDownProps } from './DropDown';
 import { getAllPokemon, getPokemonAndNeighborInfo } from 'util/apiCall';
+import { getIdFromUrl } from 'util/misc';
 
 export const PokeDropDown = () => {
 	// Global state
 	const allPokemon: Pokemon[] = useAppSelector((state) => {
 		return state.pokemonAll;
 	});
-	const pokemonDetails: any = useAppSelector((state) => {
-		return state.pokemonDetails;
-	});
 
 	// Component state
-	let [dropDownProps, setDropDownProps] = useState<DropDownProps>({
+	const [dropDownProps, setDropDownProps] = useState<DropDownProps>({
 		value: 'Select Pokemon',
 		text: [],
-		callback: () => {},
+		clickItemCallback: () => {},
 	});
+	const [dropDownPokemon, setDropDownPokemon] = useState<Pokemon[]>([]);
+	const [key, setKey] = useState<number>(0);
 
 	// initialize (call Api)
 	useEffect(() => {
@@ -30,22 +30,48 @@ export const PokeDropDown = () => {
 		if (allPokemon) {
 			setDropDownProps({
 				text: fillTextWithPokemonName(allPokemon),
-				callback: (index: number) => {
-					// index, is the pos in the array of given pokemon
-					// this corresponds to the id + 1 of the pokemon
-					const pokeIndex = index + 1;
-					getPokemonAndNeighborInfo(pokeIndex);
+				clickItemCallback: (itemSelected: string) => {
+					const pokeIndex = getIndexFromPokemonName(allPokemon, itemSelected);
+					if (pokeIndex) {
+						getPokemonAndNeighborInfo(pokeIndex);
+					}
+				},
+				changeValueCallback: (value: string) => {
+					setDropDownPokemon(searchPokemon(value.toLowerCase()));
 				},
 			});
 		}
 	}, [allPokemon]);
 
-	// update dropdown value when pokemon is selected by other means
 	useEffect(() => {
-		if (pokemonDetails) {
-			setDropDownProps({ ...dropDownProps, value: pokemonDetails.name });
+		setDropDownProps({
+			...dropDownProps,
+			text: fillTextWithPokemonName(dropDownPokemon),
+		});
+	}, [dropDownPokemon]);
+
+	const searchPokemon = (value: string): Pokemon[] => {
+		let searchResult: Pokemon[] = [];
+		if (allPokemon) {
+			for (let pokemon of allPokemon) {
+				if (pokemon.name.startsWith(value)) {
+					searchResult.push(pokemon);
+				}
+			}
 		}
-	}, [pokemonDetails]);
+		return searchResult;
+	};
+
+	const getIndexFromPokemonName = (
+		pokeList: Pokemon[],
+		pokeName: string
+	): number | null => {
+		const pokemon = pokeList.find((pokemon) => pokemon.name === pokeName);
+		if (pokemon) {
+			return getIdFromUrl(pokemon.url);
+		}
+		return null;
+	};
 
 	const fillTextWithPokemonName = (pokeList: Pokemon[]): string[] => {
 		return pokeList.map((poke) => {

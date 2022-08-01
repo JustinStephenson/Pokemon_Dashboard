@@ -4,12 +4,14 @@ import './DropDown.scss';
 export type DropDownProps = {
 	value?: string;
 	text: string[];
-	callback?: (...args: any[]) => void;
+	clickItemCallback?: (...args: any[]) => void;
+	changeValueCallback?: (...args: any[]) => void;
 };
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState<string>('Select');
+	const inputRef = useRef<HTMLInputElement>(null);
 	const elementRef = useRef<HTMLDivElement>(null);
 	const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -18,7 +20,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 		if (props.value) {
 			setSelected(props.value);
 		}
-	});
+	}, []);
 
 	useEffect(() => {
 		const onBodyClick = (event: MouseEvent) => {
@@ -41,8 +43,30 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (props.clickItemCallback) {
+			props.clickItemCallback(selected);
+		}
+		if (props.changeValueCallback) {
+			props.changeValueCallback(selected);
+		}
+	}, [selected]);
+
 	const setIsOpenClick = () => {
+		if (inputRef.current) {
+			if (isOpen === false) {
+				inputRef.current.focus();
+				setSelected('');
+			} else {
+				inputRef.current.blur();
+			}
+		}
+
 		setIsOpen(!isOpen);
+	};
+
+	const onInputChange = (event: any) => {
+		setSelected(event.target.value);
 	};
 
 	const dropDownClick = (text: string) => {
@@ -62,9 +86,6 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 					key={i}
 					onClick={() => {
 						dropDownClick(props.text[i]);
-						if (props.callback) {
-							props.callback(i);
-						}
 					}}
 					className="dropdown__item"
 				>
@@ -78,7 +99,13 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	return (
 		<div ref={elementRef} className="dropdown u-margin-sides-big">
 			<button onClick={setIsOpenClick} className="dropdown__btn">
-				{selected}
+				<input
+					ref={inputRef}
+					className="dropdown__input"
+					type="text"
+					value={selected}
+					onChange={onInputChange}
+				/>
 			</button>
 			<div
 				ref={dropdownRef}

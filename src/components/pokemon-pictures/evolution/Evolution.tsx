@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getIdFromUrl } from 'util/misc';
 import { getPictureById } from 'util/pictureRetrival';
 import './Evolution.scss';
 
@@ -73,11 +74,6 @@ export const Evolution = (props: EvolutionProps) => {
 			}
 		}
 		return result;
-	};
-
-	//TODO: improve this to be more generic
-	const getIdFromUrl = (url: string): number => {
-		return parseInt(url.split('/')[6]);
 	};
 
 	return <React.Fragment>{evolutions}</React.Fragment>;
