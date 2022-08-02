@@ -9,15 +9,23 @@
 		margin: auto 2.5rem;
 	}
 
-	@include respond($bp-small-2) {
+	@include respond($bp-small) {
 		font-size: 1.75rem;
 	}
 
-	@include respond($bp-small-3) {
+	@include respond($bp-small-2) {
 		font-size: 1.65rem;
 	}
 
-	@include respond($bp-small-4) {
+	@include respond($bp-small-3) {
 		font-size: 1.5rem;
+	}
+
+	@include respond($bp-small-4) {
+		font-size: 1.25rem;
+	}
+
+	@include respond($bp-small-7) {
+		font-size: 1rem;
 	}
 }

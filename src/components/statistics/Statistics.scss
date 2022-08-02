@@ -22,7 +22,7 @@
 		color: var(--color-primary);
 
 		@include respond($bp-small-4) {
-			font-size: 1.5rem;
+			font-size: 1.25rem;
 		}
 	}
 
@@ -37,7 +37,7 @@
 		color: var(--color-primary);
 
 		@include respond($bp-small-4) {
-			font-size: 1.25rem;
+			font-size: 1.15rem;
 		}
 
 		p {
