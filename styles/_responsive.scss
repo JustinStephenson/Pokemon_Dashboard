@@ -1,4 +1,5 @@
-// RESPONSIVE BREAKPOINTS
+// RESPONSIVE BREAKPOINTS\
+// Width
 $bp-largest: 1200px;
 $bp-large: 1000px;
 $bp-medium: 900px;
@@ -10,9 +11,19 @@ $bp-small-5: 450px;
 $bp-small-6: 400px;
 $bp-small-7: 350px;
 
+// Height
+$bp-h-1000: 1000px;
+$bp-h-900: 900px;
+
 // media query mixin
 @mixin respond($breakpoint) {
 	@media only screen and (max-width: ($breakpoint/16px * 1em)) {
+		@content;
+	}
+}
+
+@mixin respondHeight($breakpoint) {
+	@media only screen and (max-height: ($breakpoint/16px * 1em)) {
 		@content;
 	}
 }
