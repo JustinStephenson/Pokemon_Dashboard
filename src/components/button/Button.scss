@@ -4,6 +4,7 @@
 	background: none;
 	color: inherit;
 	border: solid var(--border-size-info);
+	box-shadow: 0.2rem 0.2rem 0.5rem;
 	border-radius: 1rem;
 	padding: 0.25rem 0.5rem;
 	font: inherit;
@@ -33,5 +34,6 @@
 	&:active,
 	&:focus {
 		background-color: var(--button-color-click);
+		box-shadow: none;
 	}
 }

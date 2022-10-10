@@ -28,6 +28,7 @@ export const PrevPokemon = () => {
 		} else {
 			setInlineProps({ ...inlineProps, imgLocation: '' });
 		}
+		// eslint-disable-next-line
 	}, [prevPokemonDetails]);
 
 	return <Inline {...inlineProps} />;
