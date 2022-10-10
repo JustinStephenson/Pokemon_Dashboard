@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getApiResponseFromUrl } from 'util/apiCall';
 import { getPicture } from 'util/pictureRetrival';
+import { Spinner } from 'components/spinner/Spinner';
 import './Varieties.scss';
 
 export type VarietiesType = [
@@ -23,7 +24,9 @@ export type VarietiesProps = {
 };
 
 export const Varieties = (props: VarietiesProps) => {
-	const [varieties, setVarieties] = useState<JSX.Element[]>([]);
+	const [varieties, setVarieties] = useState<JSX.Element[]>([
+		<Spinner key={'spinner'}></Spinner>,
+	]);
 
 	useEffect(() => {
 		setup().then((elements) => {
@@ -34,7 +37,6 @@ export const Varieties = (props: VarietiesProps) => {
 	const setup = async (): Promise<JSX.Element[]> => {
 		const images: JSX.Element[] = [];
 		let objects: varObj[] = [];
-		let keyValue = 0;
 		await getImagesAndNames().then((obj) => {
 			objects = obj;
 		});
@@ -43,7 +45,7 @@ export const Varieties = (props: VarietiesProps) => {
 				await getPicture(obj.imgUrl).then((imgUrl) => {
 					if (obj.imgUrl) {
 						images.push(
-							<div key={keyValue++} className="varieties">
+							<div key={obj.name} className="varieties">
 								<img src={imgUrl} alt="variety" />
 								<p>{obj.name}</p>
 							</div>

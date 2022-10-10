@@ -1,3 +1,4 @@
+import { Spinner } from 'components/spinner/Spinner';
 import React, { useEffect, useState } from 'react';
 import { getIdFromUrl } from 'util/misc';
 import { getPictureById } from 'util/pictureRetrival';
@@ -24,7 +25,9 @@ export type EvolutionProps = {
 };
 
 export const Evolution = (props: EvolutionProps) => {
-	const [evolutions, setEvolutions] = useState<JSX.Element[]>([]);
+	const [evolutions, setEvolutions] = useState<JSX.Element[]>([
+		<Spinner key={'spinner'}></Spinner>,
+	]);
 
 	useEffect(() => {
 		setup().then((imgList) => {
