@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Header } from './header/Header';
 import { Info } from './info/Info';
 import { PrevPokemon } from './pokemon-pictures/prev-next-pokemon/PrevPokemon';
