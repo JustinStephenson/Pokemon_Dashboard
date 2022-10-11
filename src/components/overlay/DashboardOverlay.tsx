@@ -16,7 +16,7 @@ export const DashboardOverlay = () => {
 
 	const customStyle: React.CSSProperties = {
 		height: '200vh',
-		transform: 'translateY(25vh)',
+		transform: 'translateY(30vh)',
 	};
 
 	return <Overlay show={showOverlay} style={customStyle} />;

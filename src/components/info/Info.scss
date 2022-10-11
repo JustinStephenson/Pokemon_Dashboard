@@ -10,12 +10,9 @@
 	font-size: 1.5rem;
 	text-transform: capitalize;
 
-	@include respond($bp-small-4) {
-		font-size: 1.2rem;
-	}
-
-	@include respond($bp-small-6) {
-		font-size: 1rem;
+	@include respond($bp-medium) {
+		grid-template-rows: min-content 1fr;
+		line-height: 1.25rem;
 	}
 
 	&__header {
@@ -29,8 +26,9 @@
 		font-size: 2rem;
 		font-weight: bold;
 
-		@include respond($bp-small-4) {
+		@include respond($bp-medium) {
 			font-size: 1.5rem;
+			border-bottom: none;
 		}
 
 		&-text {
@@ -45,11 +43,7 @@
 
 		@include respond($bp-medium) {
 			grid-template-columns: repeat(4, 1fr);
-			grid-template-rows: min-content min-content auto;
-		}
-
-		@include respond($bp-small-2) {
-			grid-template-rows: 3fr 3fr 2fr;
+			grid-template-rows: 1fr 1fr;
 		}
 
 		& > * {
@@ -58,7 +52,8 @@
 			border-bottom: var(--border-size-info) solid var(--color-primary);
 
 			@include respond($bp-medium) {
-				grid-template-rows: 1fr 2fr;
+				border-top: var(--border-size-info) solid var(--color-primary);
+				border-bottom: none;
 			}
 		}
 
@@ -114,18 +109,37 @@
 			grid-template-columns: 1fr 1fr 1fr;
 			border-bottom: none;
 
+			@include respond($bp-medium) {
+				grid-template-rows: repeat(3, 1fr);
+				grid-template-columns: 1fr;
+				grid-column: -1;
+				grid-row: 1 / -1;
+			}
+
+			@include respond($bp-small-3) {
+				font-size: 1rem;
+			}
+
+			@include respond($bp-small-4) {
+				font-size: 0.2rem;
+			}
+
 			& > * {
 				display: grid;
 				grid-row: 1 / -1;
 				border-right: var(--border-size-info) solid var(--color-primary);
 
 				@include respond($bp-medium) {
-					border-right: var(--border-size-info) solid var(--color-primary);
+					grid-row: initial;
+					border-right: none;
+					border-left: var(--border-size-info) solid var(--color-primary);
+					border-bottom: var(--border-size-info) solid var(--color-primary);
 				}
 			}
 
 			&-last {
 				border-right: none;
+				border-bottom: none;
 			}
 		}
 
@@ -134,6 +148,19 @@
 			justify-self: center;
 
 			font-weight: bold;
+			margin: 0.2rem;
+
+			@include respond($bp-small-3) {
+				font-size: 1.2rem;
+			}
+
+			@include respond($bp-small-4) {
+				font-size: 1rem;
+			}
+
+			@include respond($bp-small-4) {
+				font-size: 0.75rem;
+			}
 		}
 
 		&-bot {
@@ -150,15 +177,15 @@
 			}
 
 			@include respond($bp-medium) {
-				font-size: 1.75rem;
+				font-size: 1.7rem;
 			}
 
 			@include respond($bp-small-2) {
-				font-size: 1.55rem;
+				font-size: 1.2rem;
 			}
 
-			@include respond($bp-small-6) {
-				font-size: 1.25rem;
+			@include respond($bp-small-4) {
+				font-size: 1rem;
 			}
 
 			&-checkbox {
@@ -178,6 +205,10 @@
 					width: 7.5rem;
 				}
 
+				@include respond($bp-small-6) {
+					width: 6.75rem;
+				}
+
 				@include respond($bp-small-7) {
 					width: 6rem;
 				}
@@ -192,6 +223,10 @@
 					line-height: 0.75rem;
 					font-style: italic;
 					align-self: center;
+
+					@include respond($bp-medium) {
+						padding-top: 0.35rem;
+					}
 				}
 			}
 
@@ -203,7 +238,7 @@
 				align-items: center;
 				justify-content: space-around;
 
-				@include respond($bp-small-2) {
+				@include respond($bp-medium) {
 					flex-direction: column;
 				}
 
