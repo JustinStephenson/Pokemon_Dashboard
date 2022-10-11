@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './header/Header';
 import { Info } from './info/Info';
 import { PrevPokemon } from './pokemon-pictures/prev-next-pokemon/PrevPokemon';
@@ -10,6 +10,12 @@ import { DashboardOverlay } from './overlay/DashboardOverlay';
 import './App.scss';
 
 export const App = (): JSX.Element => {
+	useEffect(() => {
+		// get the document height and set custom property
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	}, []);
+
 	return (
 		<React.Fragment>
 			<div className="dashboard">
