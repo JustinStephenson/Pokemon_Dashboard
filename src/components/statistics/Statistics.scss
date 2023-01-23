@@ -13,6 +13,10 @@
 		grid-column: 2;
 	}
 
+	@include respondHeight($bp-h-700) {
+		height: 87.5%;
+	}
+
 	&__header {
 		justify-self: center;
 		align-self: center;
@@ -40,6 +44,11 @@
 			font-size: 1.15rem;
 		}
 
+		@include respondHeight($bp-h-700) {
+			row-gap: 0.2rem;
+			height: 97.5%;
+		}
+
 		p {
 			display: inline-block;
 			white-space: nowrap;
@@ -56,6 +65,10 @@
 		width: 100%;
 		color: inherit;
 
+		@include respondHeight($bp-h-700) {
+			row-gap: 0rem;
+		}
+
 		& > * {
 			color: inherit;
 			display: flex;
@@ -63,6 +76,10 @@
 			justify-content: flex-end;
 			height: 100%;
 			// grid-column is updated in react component
+
+			@include respondHeight($bp-h-700) {
+				height: 90%;
+			}
 		}
 
 		// HP

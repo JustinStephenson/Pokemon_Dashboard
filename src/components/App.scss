@@ -29,21 +29,37 @@ body {
 // App
 .dashboard {
 	display: grid;
-	grid-template-rows: 20vh [header] 25vh [section-1] 47.5vh [section-2];
+	grid-template-rows:
+		calc(var(--vh) * 20) [header]
+		calc(var(--vh) * 25) [section-1]
+		calc(var(--vh) * 47.5) [section-2];
 	row-gap: var(--main-grid-gap);
 	column-gap: 1rem;
 
 	@include respond($bp-medium) {
 		// grid-gap is 1.5vh
-		grid-template-rows: 20vh [header] 25vh [section-1] 50.5vh [section-2];
+		grid-template-rows:
+			calc(var(--vh) * 20) [header]
+			calc(var(--vh) * 25) [section-1]
+			calc(var(--vh) * 50.5) [section-2];
 	}
 
 	@include respond($bp-small-2) {
-		grid-template-rows: 20vh [header] 20vh [section-1] 55.5vh [section-2];
+		grid-template-rows:
+			calc(var(--vh) * 20) [header]
+			calc(var(--vh) * 20) [section-1]
+			calc(var(--vh) * 55.5) [section-2];
 	}
 
 	@include respond($bp-small-4) {
-		grid-template-rows: 20vh [header] 18vh [section-1] 57.5vh [section-2];
+		grid-template-rows:
+			calc(var(--vh) * 20) [header]
+			calc(var(--vh) * 18) [section-1]
+			calc(var(--vh) * 57.5) [section-2];
+	}
+
+	@include respondHeight($bp-h-700) {
+		overflow: hidden;
 	}
 
 	&__section-1 {

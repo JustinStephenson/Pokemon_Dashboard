@@ -10,6 +10,6 @@
 		display: inline-block;
 		width: 100%;
 		height: auto;
-		max-height: 30vh;
+		max-height: calc(var(--vh) * 30);
 	}
 }

@@ -73,11 +73,11 @@ export const PokemonMessage = () => {
 
 	return (
 		<div className="pokemon-message">
-			<img className="pokemon-message-top-right" src={sprite} />
-			<img className="pokemon-message-top-left" src={sprite} />
+			<img className="pokemon-message-top-right" alt="sprite" src={sprite} />
+			<img className="pokemon-message-top-left" alt="sprite" src={sprite} />
 			<Message message={message} />
-			<img className="pokemon-message-bot-right" src={pokeball} />
-			<img className="pokemon-message-bot-left" src={pokeball} />
+			<img className="pokemon-message-bot-right" alt="sprite" src={pokeball} />
+			<img className="pokemon-message-bot-left" alt="sprite" src={pokeball} />
 		</div>
 	);
 };

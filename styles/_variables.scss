@@ -24,7 +24,7 @@
 	--button-color-click: rgb(200, 200, 200);
 
 	// Grid Variables
-	--main-grid-gap: 2.5vh;
+	--main-grid-gap: calc(var(--vh) * 2.5);
 
 	// Values
 	--total-num-of-stats: 6;
@@ -46,7 +46,7 @@
 
 	@include respond($bp-large) {
 		// Grid Variables
-		--main-grid-gap: 1.5vh;
+		--main-grid-gap: calc(var(--vh) * 1.5);
 
 		// Images
 		--img-size-big: 20rem;
@@ -97,7 +97,7 @@
 
 	@include respond($bp-small-4) {
 		// Grid Variables
-		--main-grid-gap: 1.5vh;
+		--main-grid-gap: calc(var(--vh) * 1.5);
 
 		// Images
 		--img-size-big: 11.75rem;

@@ -23,6 +23,10 @@
 		margin-top: 0;
 	}
 
+	@include respondHeight($bp-h-700) {
+		height: 87.5%;
+	}
+
 	&-top-right {
 		@include img;
 		top: 0;

@@ -45,7 +45,7 @@
 	&__container {
 		display: none;
 		position: absolute;
-		height: 31vh;
+		height: calc(var(--vh) * 31);
 		width: 100%;
 		overflow: auto;
 		border: 0.1rem solid black;
