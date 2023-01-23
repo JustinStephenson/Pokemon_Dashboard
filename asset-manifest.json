@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Pokemon_Dashboard/static/css/main.56a0bfc6.css",
-    "main.js": "/Pokemon_Dashboard/static/js/main.42aa2f9e.js",
+    "main.css": "/Pokemon_Dashboard/static/css/main.8e0ab600.css",
+    "main.js": "/Pokemon_Dashboard/static/js/main.fcf4209f.js",
     "static/media/pokemon-logo-text.png": "/Pokemon_Dashboard/static/media/pokemon-logo-text.c8e5f5413616d2d8709c.png",
     "static/media/arrow_transparent.png": "/Pokemon_Dashboard/static/media/arrow_transparent.b03cd381b0ea0992c98b.png",
     "static/media/type_dragon.png": "/Pokemon_Dashboard/static/media/type_dragon.f755f101c2e0a4962f16.png",
@@ -20,11 +20,11 @@
     "static/media/type_fairy.png": "/Pokemon_Dashboard/static/media/type_fairy.e2b702c13f38ab43da0e.png",
     "static/media/type_flying.png": "/Pokemon_Dashboard/static/media/type_flying.14367e2bf83dd8102483.png",
     "index.html": "/Pokemon_Dashboard/index.html",
-    "main.56a0bfc6.css.map": "/Pokemon_Dashboard/static/css/main.56a0bfc6.css.map",
-    "main.42aa2f9e.js.map": "/Pokemon_Dashboard/static/js/main.42aa2f9e.js.map"
+    "main.8e0ab600.css.map": "/Pokemon_Dashboard/static/css/main.8e0ab600.css.map",
+    "main.fcf4209f.js.map": "/Pokemon_Dashboard/static/js/main.fcf4209f.js.map"
   },
   "entrypoints": [
-    "static/css/main.56a0bfc6.css",
-    "static/js/main.42aa2f9e.js"
+    "static/css/main.8e0ab600.css",
+    "static/js/main.fcf4209f.js"
   ]
 }
