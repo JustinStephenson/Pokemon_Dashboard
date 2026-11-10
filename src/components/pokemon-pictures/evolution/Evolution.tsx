@@ -1,7 +1,11 @@
 import { Spinner } from 'components/spinner/Spinner';
 import React, { useEffect, useState } from 'react';
 import { getIdFromUrl } from 'util/misc';
-import { getPictureById } from 'util/pictureRetrival';
+import {
+	ARTWORK_SIZE,
+	getArtworkUrlById,
+	preloadImage,
+} from 'util/pictureRetrival';
 import './Evolution.scss';
 
 export type EvolutionChain = {
@@ -36,32 +40,28 @@ export const Evolution = (props: EvolutionProps) => {
 	}, []);
 
 	const setup = async (): Promise<JSX.Element[]> => {
-		let pokemonSeq: number[] = setupSequence();
-		let images: JSX.Element[] = [];
-		let keyValue = 0;
-		for (const seq of pokemonSeq) {
-			await getPictureById(seq).then((imgUrl) => {
-				if (seq === pokemonSeq[pokemonSeq.length - 1]) {
-					images.push(
-						<React.Fragment key={keyValue++}>
-							<div className="evolution">
-								<img src={imgUrl} alt="evolution" />
-							</div>
-						</React.Fragment>
-					);
-				} else {
-					images.push(
-						<React.Fragment key={keyValue++}>
-							<div className="evolution">
-								<img src={imgUrl} alt="evolution" />
-							</div>
-							<p className="evolution--arrow">&gt;</p>
-						</React.Fragment>
-					);
-				}
-			});
-		}
-		return images;
+		const pokemonSeq: number[] = setupSequence();
+		const imgUrls: string[] = pokemonSeq.map((id) => getArtworkUrlById(id));
+		// load every evolution image at the same time, not one after another
+		await Promise.all(imgUrls.map((url) => preloadImage(url)));
+
+		return imgUrls.map((imgUrl, index) => {
+			const isLast = index === imgUrls.length - 1;
+			return (
+				<React.Fragment key={index}>
+					<div className="evolution">
+						<img
+							src={imgUrl}
+							alt="evolution"
+							width={ARTWORK_SIZE}
+							height={ARTWORK_SIZE}
+							decoding="async"
+						/>
+					</div>
+					{isLast ? null : <p className="evolution--arrow">&gt;</p>}
+				</React.Fragment>
+			);
+		});
 	};
 
 	const setupSequence = (): number[] => {

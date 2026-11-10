@@ -13,8 +13,11 @@
 		grid-column: 2;
 	}
 
-	@include respondHeight($bp-h-700) {
-		height: 87.5%;
+	// phones: first row of the stacked Statistics / message column
+	@include respond($bp-small-3) {
+		grid-column: 1;
+		grid-row: 1;
+		min-height: 24rem;
 	}
 
 	&__header {
@@ -44,11 +47,6 @@
 			font-size: 1.15rem;
 		}
 
-		@include respondHeight($bp-h-700) {
-			row-gap: 0.2rem;
-			height: 97.5%;
-		}
-
 		p {
 			display: inline-block;
 			white-space: nowrap;
@@ -65,10 +63,6 @@
 		width: 100%;
 		color: inherit;
 
-		@include respondHeight($bp-h-700) {
-			row-gap: 0rem;
-		}
-
 		& > * {
 			color: inherit;
 			display: flex;
@@ -76,10 +70,6 @@
 			justify-content: flex-end;
 			height: 100%;
 			// grid-column is updated in react component
-
-			@include respondHeight($bp-h-700) {
-				height: 90%;
-			}
 		}
 
 		// HP

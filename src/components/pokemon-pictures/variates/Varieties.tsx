@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getApiResponseFromUrl } from 'util/apiCall';
-import { getPicture } from 'util/pictureRetrival';
+import {
+	ARTWORK_SIZE,
+	getArtworkUrl,
+	preloadImage,
+} from 'util/pictureRetrival';
 import { Spinner } from 'components/spinner/Spinner';
 import './Varieties.scss';
 
@@ -35,46 +39,44 @@ export const Varieties = (props: VarietiesProps) => {
 	}, []);
 
 	const setup = async (): Promise<JSX.Element[]> => {
-		const images: JSX.Element[] = [];
-		let objects: varObj[] = [];
-		await getImagesAndNames().then((obj) => {
-			objects = obj;
-		});
-		if (props.varietyDetails) {
-			for (const obj of objects) {
-				await getPicture(obj.imgUrl).then((imgUrl) => {
-					if (obj.imgUrl) {
-						images.push(
-							<div key={obj.name} className="varieties">
-								<img src={imgUrl} alt="variety" />
-								<p>{obj.name}</p>
-							</div>
-						);
-					}
-				});
-			}
+		if (!props.varietyDetails) {
+			return [];
 		}
-		return images;
+		const objects: varObj[] = (await getImagesAndNames()).filter(
+			(obj) => obj.imgUrl
+		);
+		// load every variety image at the same time, not one after another
+		await Promise.all(objects.map((obj) => preloadImage(obj.imgUrl)));
+
+		return objects.map((obj) => (
+			<div key={obj.name} className="varieties">
+				<img
+					src={obj.imgUrl}
+					alt="variety"
+					width={ARTWORK_SIZE}
+					height={ARTWORK_SIZE}
+					decoding="async"
+				/>
+				<p>{obj.name}</p>
+			</div>
+		));
 	};
 
-	const getImagesAndNames = async (): Promise<varObj[]> => {
-		const objects: varObj[] = [];
-		if (props.varietyDetails) {
-			// skip first default image
-			for (let i = 1; i < props.varietyDetails.length; i++) {
-				let details = props.varietyDetails[i];
-				await getApiResponseFromUrl(details.pokemon.url).then(
-					(pokemon: any) => {
-						objects.push({
-							name: details.pokemon.name,
-							imgUrl:
-								pokemon.sprites.other['official-artwork']['front_default'],
-						});
-					}
-				);
-			}
+	const getImagesAndNames = (): Promise<varObj[]> => {
+		if (!props.varietyDetails) {
+			return Promise.resolve([]);
 		}
-		return objects;
+		// skip first default image; request the rest in parallel
+		return Promise.all(
+			props.varietyDetails.slice(1).map((details) =>
+				getApiResponseFromUrl(details.pokemon.url).then(
+					(pokemon: any): varObj => ({
+						name: details.pokemon.name,
+						imgUrl: getArtworkUrl(pokemon),
+					})
+				)
+			)
+		);
 	};
 
 	return <div className="var-container">{varieties}</div>;

@@ -1,6 +1,6 @@
-import { pokeApi } from 'api/pokeApi';
 import { bindActionCreators } from 'redux';
 import { pokemonActions } from 'store/actions';
+import { cachedGet, setLatestRequestedId } from 'store/pokemonCache';
 import { store } from 'store/store';
 
 // set-up dispatch
@@ -21,19 +21,18 @@ export const getAllPokemon = (): void => {
 };
 
 export const getPokemonAndNeighborInfo = (id: number): void => {
+	// only responses for the most recent request may update the dashboard
+	setLatestRequestedId(id);
 	fetchPokemonDetails(id);
 	fetchPrevPokemonDetails(id);
 	fetchNextPokemonDetails(id);
 	fetchPokemonSpecies(id);
 };
 
-export const getPokeball = async (): Promise<any> => {
-	const url = 'https://pokeapi.co/api/v2/item/poke-ball/';
-	const response = await pokeApi().get(url);
-	return response.data;
+export const getPokeball = (): Promise<any> => {
+	return cachedGet('https://pokeapi.co/api/v2/item/poke-ball/');
 };
 
-export const getApiResponseFromUrl = async (url: string): Promise<any> => {
-	const response = await pokeApi().get(url);
-	return response.data;
+export const getApiResponseFromUrl = (url: string): Promise<any> => {
+	return cachedGet(url);
 };

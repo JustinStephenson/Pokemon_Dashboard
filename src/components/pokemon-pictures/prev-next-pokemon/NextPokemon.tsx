@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { getPicture } from 'util/pictureRetrival';
+import { getArtworkUrl } from 'util/pictureRetrival';
 import { useAppSelector } from 'util/hooks';
 import { Inline, InlineProps } from './Inline';
 
@@ -7,28 +6,15 @@ export const NextPokemon = () => {
 	const nextPokemonDetails: any = useAppSelector((state) => {
 		return state.nextPokemon;
 	});
-	const [inlineProps, setInlineProps] = useState<InlineProps>({
-		imgLocation: '',
+
+	// the artwork url is used directly, so the browser caches it and the
+	// Main Pokemon shows instantly when this Neighbour is clicked
+	const inlineProps: InlineProps = {
+		imgLocation: nextPokemonDetails ? getArtworkUrl(nextPokemonDetails) : '',
 		altString: 'pokeImg',
 		isNextPokemon: true,
-		pokemonId: 0,
-	});
-
-	useEffect(() => {
-		if (nextPokemonDetails) {
-			const loc: string =
-				nextPokemonDetails.sprites.other['official-artwork']['front_default'];
-			getPicture(loc).then((imgUrl) => {
-				setInlineProps({
-					...inlineProps,
-					imgLocation: imgUrl,
-					pokemonId: nextPokemonDetails.id,
-				});
-			});
-		} else {
-			setInlineProps({ ...inlineProps, imgLocation: '' });
-		}
-	}, [nextPokemonDetails]);
+		pokemonId: nextPokemonDetails ? nextPokemonDetails.id : 0,
+	};
 
 	return <Inline {...inlineProps} />;
 };

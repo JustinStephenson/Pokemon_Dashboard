@@ -4,6 +4,14 @@
 	height: var(--img-medium-size);
 	width: var(--img-medium-size);
 
+	// phones: shrink to fit the narrow box instead of overflowing it
+	@include respond($bp-small-3) {
+		flex: 0 1 var(--img-medium-size);
+		min-width: 0;
+		height: auto;
+		aspect-ratio: 1;
+	}
+
 	&--arrow {
 		font-size: 5rem;
 		font-weight: 500;
@@ -12,11 +20,17 @@
 		@include respond($bp-medium) {
 			margin: 0 0.5rem;
 		}
+
+		@include respond($bp-small-3) {
+			font-size: 2.5rem;
+			margin: 0 0.25rem;
+		}
 	}
 
 	img {
 		display: inline-block;
 		width: 100%;
 		height: 100%;
+		object-fit: contain;
 	}
 }

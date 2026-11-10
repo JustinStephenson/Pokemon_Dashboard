@@ -4,6 +4,8 @@
 	position: absolute;
 	width: var(--img-pixel);
 	height: var(--img-pixel);
+	// pixel-art sprites: keep them crisp when scaled
+	image-rendering: pixelated;
 }
 
 .pokemon-message {
@@ -23,8 +25,14 @@
 		margin-top: 0;
 	}
 
-	@include respondHeight($bp-h-700) {
-		height: 87.5%;
+	@include respondScroll {
+		min-height: 14rem;
+	}
+
+	// phones: under Statistics, full width
+	@include respond($bp-small-3) {
+		grid-row: 2;
+		padding: var(--img-pixel) 0;
 	}
 
 	&-top-right {

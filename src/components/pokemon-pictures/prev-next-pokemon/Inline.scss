@@ -1,10 +1,22 @@
+@import '/styles/responsive';
+
 .inline {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 
 	width: 100%;
 	height: auto;
+	// comfortable tap target on touch screens
+	min-width: 4.4rem;
+	min-height: 4.4rem;
 	cursor: pointer;
+
+	// phones: image above the arrow so the main image gets the width
+	@include respond($bp-small-3) {
+		grid-template-columns: 1fr;
+		justify-items: center;
+		row-gap: 0.5rem;
+	}
 }
 
 .img {
@@ -12,6 +24,7 @@
 	width: var(--img-small-size);
 	height: var(--img-small-size);
 	align-self: center;
+	object-fit: contain;
 }
 
 .arrow {
@@ -20,11 +33,21 @@
 	justify-self: start;
 	width: var(--img-arrow);
 
+	@include respond($bp-small-3) {
+		justify-self: center;
+		// both arrows sit under their image
+		order: 1;
+	}
+
 	&-flipped {
 		display: block;
 		align-self: center;
 		justify-self: end;
 		width: var(--img-arrow);
 		transform: scaleX(-1);
+
+		@include respond($bp-small-3) {
+			justify-self: center;
+		}
 	}
 }

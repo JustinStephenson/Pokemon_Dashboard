@@ -3,7 +3,12 @@ import { Action, ActionTypes } from './types';
 import { Dispatch } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { ReducerType } from '../reducers';
-import { AxiosResponse } from 'axios';
+import {
+	getPokemonById,
+	getPokemonSpeciesById,
+	isLatestRequest,
+} from '../pokemonCache';
+import { getArtworkUrl, preloadImage } from '../../util/pictureRetrival';
 
 export interface Pokemon {
 	name: string;
@@ -80,71 +85,90 @@ export const fetchAllPokemon = () => {
 	};
 };
 
-// Fetch selected Pokemon details, and it's neighbors Pokemon details
+// Fetch selected Pokemon details, and it's neighbors Pokemon details.
+// Data comes from pokemonCache, so a Neighbour that is already loaded is
+// reused instead of fetched again, and late responses (an older click) are
+// ignored so every panel shows the same Pokemon.
 export const fetchPokemonDetails = (id: number) => {
-	return async (dispatch: Dispatch<Action>, getState: any) => {
-		const currentPokemonResponse = await pokeApi().get(`/pokemon/${id}`);
+	return async (dispatch: Dispatch<Action>) => {
+		const details = await getPokemonById(id);
+		if (!isLatestRequest(id)) {
+			return;
+		}
 
 		dispatch<FetchPokemonDetails>({
 			type: ActionTypes.FETCH_POKEMON_DETAILS,
-			payload: currentPokemonResponse.data,
+			payload: details,
 		});
 	};
 };
 
 export const fetchPrevPokemonDetails = (id: number) => {
-	return async (dispatch: Dispatch<Action>, getState: any) => {
-		let prevPokemonResponse: AxiosResponse<any, any> | null = null;
-
+	return async (dispatch: Dispatch<Action>) => {
+		const prevId = id - 1;
 		// check if there is a prev pokemon
-		if (id - 1 !== 0) {
-			prevPokemonResponse = await pokeApi().get(`/pokemon/${id - 1}`);
+		const details = prevId > 0 ? await getPokemonById(prevId) : null;
+		if (!isLatestRequest(id)) {
+			return;
 		}
 
-		if (!!prevPokemonResponse) {
-			dispatch<FetchPrevPokemonDetails>({
-				type: ActionTypes.FETCH_PREV_POKEMON_DETAILS,
-				payload: prevPokemonResponse.data,
-			});
-		} else {
-			dispatch<FetchPrevPokemonDetails>({
-				type: ActionTypes.FETCH_PREV_POKEMON_DETAILS,
-				payload: null,
-			});
+		dispatch<FetchPrevPokemonDetails>({
+			type: ActionTypes.FETCH_PREV_POKEMON_DETAILS,
+			payload: details,
+		});
+
+		if (details) {
+			prefetchNeighbor(details, prevId - 1 > 0 ? prevId - 1 : null);
 		}
 	};
 };
 
 export const fetchNextPokemonDetails = (id: number) => {
-	return async (dispatch: Dispatch<Action>, getState: any) => {
-		let nextPokemonResponse: AxiosResponse<any, any> | null = null;
-
+	return async (dispatch: Dispatch<Action>, getState: () => ReducerType) => {
+		const nextId = id + 1;
+		const pokemonCount = getState().pokemonCount;
 		// check if there is a next pokemon
-		if (id + 1 <= getState().pokemonCount) {
-			nextPokemonResponse = await pokeApi().get(`/pokemon/${id + 1}`);
+		const details =
+			nextId <= pokemonCount ? await getPokemonById(nextId) : null;
+		if (!isLatestRequest(id)) {
+			return;
 		}
 
-		if (!!nextPokemonResponse) {
-			dispatch<FetchNextPokemonDetails>({
-				type: ActionTypes.FETCH_NEXT_POKEMON_DETAILS,
-				payload: nextPokemonResponse.data,
-			});
-		} else {
-			dispatch<FetchNextPokemonDetails>({
-				type: ActionTypes.FETCH_NEXT_POKEMON_DETAILS,
-				payload: null,
-			});
+		dispatch<FetchNextPokemonDetails>({
+			type: ActionTypes.FETCH_NEXT_POKEMON_DETAILS,
+			payload: details,
+		});
+
+		if (details) {
+			prefetchNeighbor(details, nextId + 1 <= pokemonCount ? nextId + 1 : null);
 		}
 	};
 };
 
 export const fetchPokemonSpecies = (id: number) => {
 	return async (dispatch: Dispatch<Action>) => {
-		const response = await pokeApi().get(`/pokemon-species/${id}`);
+		const species = await getPokemonSpeciesById(id);
+		if (!isLatestRequest(id)) {
+			return;
+		}
 
 		dispatch<FetchPokemonSpecies>({
 			type: ActionTypes.FETCH_POKEMON_SPECIES,
-			payload: response.data,
+			payload: species,
 		});
 	};
+};
+
+// Warm the cache for what a Neighbour click shows next: the Neighbour's
+// species and pixel sprite, plus the details and artwork of the Pokemon beyond
+// it (the new Neighbour after the click). Failures are ignored; the real
+// fetch retries.
+const prefetchNeighbor = (neighborDetails: any, beyondId: number | null) => {
+	getPokemonSpeciesById(neighborDetails.id).catch(() => {});
+	preloadImage(neighborDetails.sprites?.front_default ?? '');
+	if (beyondId) {
+		getPokemonById(beyondId)
+			.then((details) => preloadImage(getArtworkUrl(details)))
+			.catch(() => {});
+	}
 };

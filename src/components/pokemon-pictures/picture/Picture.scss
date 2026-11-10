@@ -1,15 +1,36 @@
+@import '/styles/responsive';
+
 .picture {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	height: var(--img-size-big);
-	width: var(--img-size-big);
+	// square box: as big as the image size allows, but never taller than the row
+	width: min(var(--img-size-big), var(--section-1-height));
+	max-width: 100%;
+	aspect-ratio: 1;
+
+	@include respond($bp-small-3) {
+		grid-area: picture;
+		width: var(--img-size-big);
+	}
 
 	img {
-		display: inline-block;
+		display: block;
 		width: 100%;
-		height: auto;
-		max-height: calc(var(--vh) * 30);
+		height: 100%;
+		object-fit: contain;
+
+		// fade in once the image has loaded, the box keeps its size meanwhile
+		opacity: 0;
+		transition: opacity 0.2s ease-in;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	&__img--loaded {
+		opacity: 1 !important;
 	}
 }

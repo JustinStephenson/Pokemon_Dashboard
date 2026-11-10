@@ -15,6 +15,10 @@
 		line-height: 1.25rem;
 	}
 
+	@include respond($bp-small-3) {
+		min-height: 22rem;
+	}
+
 	&__header {
 		display: flex;
 		align-items: center;
@@ -121,7 +125,7 @@
 			}
 
 			@include respond($bp-small-4) {
-				font-size: 0.2rem;
+				font-size: 1rem;
 			}
 
 			& > * {
@@ -200,6 +204,9 @@
 
 			&-types {
 				width: 9rem;
+				// two types must fit side by side in a narrow cell
+				max-width: 45%;
+				height: auto;
 
 				@include respond($bp-small-4) {
 					width: 7.5rem;

@@ -1,5 +1,7 @@
-// RESPONSIVE BREAKPOINTS\
-// Width
+@use 'sass:math';
+
+// RESPONSIVE BREAKPOINTS
+// Width (max-width, shrinking)
 $bp-largest: 1200px;
 $bp-large: 1000px;
 $bp-medium: 900px;
@@ -11,20 +13,51 @@ $bp-small-5: 450px;
 $bp-small-6: 400px;
 $bp-small-7: 350px;
 
+// Width (min-width, growing on big screens)
+$bp-xl: 1440px;
+$bp-2xl: 1920px;
+$bp-3xl: 2560px;
+
 // Height
 $bp-h-1000: 1000px;
 $bp-h-900: 900px;
 $bp-h-700: 700px;
 
+@function toEm($px) {
+	@return math.div($px, 16px) * 1em;
+}
+
 // media query mixin
 @mixin respond($breakpoint) {
-	@media only screen and (max-width: ($breakpoint/16px * 1em)) {
+	@media only screen and (max-width: toEm($breakpoint)) {
 		@content;
 	}
 }
 
 @mixin respondHeight($breakpoint) {
-	@media only screen and (max-height: ($breakpoint/16px * 1em)) {
+	@media only screen and (max-height: toEm($breakpoint)) {
+		@content;
+	}
+}
+
+// big screens: at least $breakpoint wide and (optionally) $minHeight tall
+@mixin respondMin($breakpoint, $minHeight: 0px) {
+	@if $minHeight > 0px {
+		@media only screen and (min-width: toEm($breakpoint)) and (min-height: toEm($minHeight)) {
+			@content;
+		}
+	} @else {
+		@media only screen and (min-width: toEm($breakpoint)) {
+			@content;
+		}
+	}
+}
+
+// Phones and short screens (landscape phones, small laptop windows):
+// the dashboard can't fit one screen, so the page scrolls instead.
+@mixin respondScroll {
+	@media only screen and (max-width: toEm($bp-small-3)),
+		only screen and (max-height: toEm($bp-h-700)) {
 		@content;
 	}
 }

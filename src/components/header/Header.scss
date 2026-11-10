@@ -15,7 +15,14 @@
 		display: block;
 		height: auto;
 		width: 45rem;
+		max-width: calc(100% - 2rem);
 		margin: 1rem auto;
+		object-fit: contain;
+
+		// short screens (landscape phones): don't let the logo fill the screen
+		@include respondHeight($bp-h-700) {
+			max-height: max(8rem, calc(var(--vh) * 22));
+		}
 
 		@include respond($bp-small-4) {
 			width: 40rem;

@@ -28,6 +28,10 @@
 	}
 
 	&__input {
+		// fill the button instead of the input's default ~20 character width,
+		// which is wider than small phones
+		width: 100%;
+		min-width: 0;
 		border: none;
 		outline: none;
 		font-size: inherit;

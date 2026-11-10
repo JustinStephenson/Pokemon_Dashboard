@@ -82,16 +82,18 @@
 		--button-height: 5rem;
 	}
 
+	// Phones: the Variates / Evolution buttons sit under the main image, so the
+	// main image takes the width left after the prev / next Neighbours.
 	@include respond($bp-small-3) {
 		// Images
-		--img-size-big: 12rem;
+		--img-size-big: min(24rem, calc(100vw - 16rem));
 		--img-medium-size: 6.5rem;
-		--img-small-size: 4rem;
+		--img-small-size: 5rem;
 		--img-arrow: 2rem;
 		--img-pixel: 2.5rem;
 
-		// Button Sizes
-		--button-width: 7.5rem;
+		// Button Sizes (tall enough to tap)
+		--button-width: 9rem;
 		--button-height: 4rem;
 	}
 
@@ -100,53 +102,30 @@
 		--main-grid-gap: calc(var(--vh) * 1.5);
 
 		// Images
-		--img-size-big: 11.75rem;
 		--img-medium-size: 5rem;
-		--img-small-size: 3rem;
-		--img-arrow: 1.5rem;
+		--img-small-size: 4.4rem;
+		--img-arrow: 1.75rem;
 		--img-pixel: 2.5rem;
 
 		// Button Sizes
-		--button-width: 7rem;
-		--button-height: 3rem;
-	}
-
-	@include respond($bp-small-5) {
-		// Images
-		--img-size-big: 9.5rem;
-		--img-medium-size: 5rem;
-		--img-small-size: 2.75rem;
-		--img-arrow: 1.5rem;
-		--img-pixel: 2.5rem;
-
-		// Button Sizes
-		--button-width: 6.5rem;
-		--button-height: 3rem;
+		--button-width: 8.5rem;
 	}
 
 	@include respond($bp-small-6) {
 		// Images
-		--img-size-big: 8.25rem;
 		--img-medium-size: 4.25rem;
-		--img-small-size: 2.75rem;
-		--img-arrow: 1.5rem;
-		--img-pixel: 2.5rem;
+		--img-pixel: 2.25rem;
 
 		// Button Sizes
-		--button-width: 6.5rem;
-		--button-height: 3rem;
+		--button-width: 8rem;
 	}
 
 	@include respond($bp-small-7) {
 		// Images
-		--img-size-big: 7.25rem;
-		--img-medium-size: 4.25rem;
-		--img-small-size: 2.75rem;
 		--img-arrow: 1.5rem;
 		--img-pixel: 2rem;
 
 		// Button Sizes
-		--button-width: 6rem;
-		--button-height: 3rem;
+		--button-width: 7.5rem;
 	}
 }

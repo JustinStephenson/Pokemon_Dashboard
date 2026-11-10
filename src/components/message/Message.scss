@@ -21,11 +21,13 @@
 		font-size: 1.5rem;
 	}
 
+	// phones: the message panel is full width, so the text can stay readable
 	@include respond($bp-small-4) {
-		font-size: 1.25rem;
+		font-size: 1.4rem;
+		margin: auto 3.5rem;
 	}
 
 	@include respond($bp-small-6) {
-		font-size: 1rem;
+		font-size: 1.3rem;
 	}
 }

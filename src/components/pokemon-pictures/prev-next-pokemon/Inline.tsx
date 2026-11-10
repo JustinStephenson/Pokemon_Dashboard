@@ -1,6 +1,7 @@
 import React from 'react';
 import arrowImg from 'img/arrow/arrow_transparent.png';
 import { getPokemonAndNeighborInfo } from 'util/apiCall';
+import { ARTWORK_SIZE } from 'util/pictureRetrival';
 import './Inline.scss';
 
 export type InlineProps = {
@@ -18,6 +19,9 @@ export const Inline = (props: InlineProps) => {
 				className="img"
 				src={props.imgLocation}
 				alt={props.altString}
+				width={ARTWORK_SIZE}
+				height={ARTWORK_SIZE}
+				decoding="async"
 			/>
 		);
 	};
@@ -34,7 +38,10 @@ export const Inline = (props: InlineProps) => {
 	};
 
 	const clicked = () => {
-		getPokemonAndNeighborInfo(props.pokemonId);
+		// an empty Neighbour (before #1 / after the last) has nothing to show
+		if (props.imgLocation && props.pokemonId) {
+			getPokemonAndNeighborInfo(props.pokemonId);
+		}
 	};
 
 	const populate = (): JSX.Element => {

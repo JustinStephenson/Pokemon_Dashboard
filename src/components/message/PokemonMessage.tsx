@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPokeball } from 'util/apiCall';
 import { useAppSelector } from 'util/hooks';
-import { getPicture } from 'util/pictureRetrival';
+import { SPRITE_SIZE } from 'util/pictureRetrival';
 import { Message } from './Message';
 import './PokemonMessage.scss';
 
@@ -26,7 +26,6 @@ export const PokemonMessage = () => {
 	});
 
 	const [message, setMessage] = useState<string>('');
-	const [sprite, setSprite] = useState<string>('');
 	const [pokeball, setPokeball] = useState<string>('');
 
 	const getEnglishText = (): string | null => {
@@ -41,14 +40,9 @@ export const PokemonMessage = () => {
 		setPokeBallImg();
 	}, []);
 
-	useEffect(() => {
-		if (pokemonDetails) {
-			const loc: string = pokemonDetails.sprites['front_default'];
-			getPicture(loc).then((imgUrl) => {
-				setSprite(imgUrl);
-			});
-		}
-	}, [pokemonDetails]);
+	const sprite: string = pokemonDetails
+		? pokemonDetails.sprites['front_default'] ?? ''
+		: '';
 
 	useEffect(() => {
 		if (pokemonSpecies) {
@@ -64,20 +58,39 @@ export const PokemonMessage = () => {
 	const setPokeBallImg = (): void => {
 		const response = getPokeball();
 		response.then((obj: any) => {
-			const loc: string = obj.sprites.default;
-			getPicture(loc).then((imgUrl) => {
-				setPokeball(imgUrl);
-			});
+			setPokeball(obj.sprites.default);
 		});
 	};
 
+	const spriteSize = { width: SPRITE_SIZE, height: SPRITE_SIZE };
+
 	return (
 		<div className="pokemon-message">
-			<img className="pokemon-message-top-right" alt="sprite" src={sprite} />
-			<img className="pokemon-message-top-left" alt="sprite" src={sprite} />
+			<img
+				className="pokemon-message-top-right"
+				alt="sprite"
+				src={sprite}
+				{...spriteSize}
+			/>
+			<img
+				className="pokemon-message-top-left"
+				alt="sprite"
+				src={sprite}
+				{...spriteSize}
+			/>
 			<Message message={message} />
-			<img className="pokemon-message-bot-right" alt="sprite" src={pokeball} />
-			<img className="pokemon-message-bot-left" alt="sprite" src={pokeball} />
+			<img
+				className="pokemon-message-bot-right"
+				alt="sprite"
+				src={pokeball}
+				{...spriteSize}
+			/>
+			<img
+				className="pokemon-message-bot-left"
+				alt="sprite"
+				src={pokeball}
+				{...spriteSize}
+			/>
 		</div>
 	);
 };
