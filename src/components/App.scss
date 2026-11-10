@@ -61,6 +61,13 @@ body {
 		--section-1-height: calc(var(--vh) * 20);
 	}
 
+	// big screens: breathing room under the panels; it comes out of
+	// section-2's share, so the dashboard still fits one screen (shorter
+	// screens have no room to spare, e.g. 1366x768 would scroll)
+	@include respondMin($bp-largest, 800px) {
+		padding-bottom: var(--main-grid-gap);
+	}
+
 	// phones and short screens scroll instead of squeezing into one screen
 	@include respondScroll {
 		--section-1-height: 22rem;
