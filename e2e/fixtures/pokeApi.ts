@@ -27,7 +27,17 @@ export const POKEMON: FixturePokemon[] = [
 	},
 	{ id: 4, name: 'charmander', types: ['fire'], chain: 2 },
 	{ id: 5, name: 'charmeleon', types: ['fire'], chain: 2 },
-	{ id: 6, name: 'charizard', types: ['fire', 'flying'], chain: 2 },
+	{
+		id: 6,
+		name: 'charizard',
+		types: ['fire', 'flying'],
+		chain: 2,
+		// more varieties than fit the box, like Pikachu's 15
+		varieties: Array.from({ length: 12 }, (_, i) => ({
+			id: 10100 + i,
+			name: `charizard-form-${i + 1}`,
+		})),
+	},
 ];
 
 // the last Pokemon in the fixture data, i.e. has no next Neighbour

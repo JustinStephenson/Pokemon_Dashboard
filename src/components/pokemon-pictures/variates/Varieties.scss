@@ -4,7 +4,9 @@
 	position: absolute;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	// no justify-content: center here, it pushes the first varieties out of
+	// reach on the left when they don't fit; the auto margins on the first
+	// and last .varieties centre the row when it does fit
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -19,6 +21,8 @@
 	flex-direction: column;
 	height: var(--img-medium-size);
 	width: var(--img-medium-size);
+	// keep full size and scroll instead of squashing when there are many
+	flex-shrink: 0;
 	margin: 0 1rem;
 
 	&:first-child {
@@ -29,10 +33,23 @@
 		margin-right: auto;
 	}
 
+	// phones: bigger cards; the name sits under the image and may wrap
+	@include respond($bp-small-3) {
+		width: 9rem;
+		height: auto;
+		margin: 0 0.75rem;
+	}
+
 	img {
 		display: inline-block;
+		width: 100%;
 		height: 80%;
 		object-fit: contain;
+
+		@include respond($bp-small-3) {
+			height: auto;
+			aspect-ratio: 1;
+		}
 	}
 
 	p {
@@ -42,7 +59,14 @@
 		height: 20%;
 
 		@include respond($bp-small) {
-			font-size: 0.75rem;
+			font-size: 1rem;
+		}
+
+		@include respond($bp-small-3) {
+			height: auto;
+			font-size: 1.1rem;
+			line-height: 1.2;
+			overflow-wrap: anywhere;
 		}
 	}
 }
