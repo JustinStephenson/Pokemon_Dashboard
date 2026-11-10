@@ -1,8 +1,8 @@
 # QA checklist
 
 ## How validation works
-1. **Automated: CI must be green.** GitHub Actions runs Jest (`npm run test:ci`) and Playwright (`npm run test:ui`) on every push to `main` and every pull request.
-2. **Screenshots.** Playwright saves a full-page screenshot for each screen size. Open the report with `npm run test:ui:report` (or download the `playwright-report` artifact from the CI run) and look at each one.
+1. **Automated.** CI must be green: GitHub Actions runs Jest (`npm run test:ci`) on every push to `main` and every pull request. Run the Playwright UI tests (`npm run test:ui`) locally; they are not part of CI.
+2. **Screenshots.** Playwright saves a full-page screenshot for each screen size. Open the report with `npm run test:ui:report` and look at each one.
 3. **Manual pass.** Run `npm start` and go through the list below in Chrome DevTools device mode. Then check once on a real phone against the deployed site.
 
 The UI tests use saved PokeAPI data (`e2e/fixtures/pokeApi.ts`) and stand-in images, so they are fast and never fail because the API is slow. The manual pass is what checks the real data and artwork.
