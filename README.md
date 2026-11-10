@@ -24,6 +24,3 @@ Typescript<br>
 
 First time only: `npx playwright install chromium`.
 To use your installed Google Chrome instead, set `PW_CHANNEL=chrome`.
-
-CI (GitHub Actions) runs the Jest tests on every push to `main` and every pull request. The Playwright UI tests run locally only.
-See [docs/QA.md](docs/QA.md) for the full QA checklist.
